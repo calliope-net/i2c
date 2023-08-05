@@ -1,8 +1,9 @@
 
 //% color=#007FFF icon="\uf1e6" block="i2c" weight=20
 namespace i2c
-/* 230804
+/* 230805
 Calliope Blöcke zur Programmierung beliebiger i2c Module ohne JavaScript
+optimiert und getestet für die gleichzeitige Nutzung mehrerer i2c Module am Calliope
 
 Code neu programmiert von Lutz Elßner im Juli 2023
 */ {
