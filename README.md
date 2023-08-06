@@ -33,4 +33,3 @@ Dieses Repository kann als **Erweiterung** in MakeCode hinzugefügt werden.
 
 * Calliope mini
 * i2c
-* 
