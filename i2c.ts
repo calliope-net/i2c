@@ -1,9 +1,13 @@
 
 //% color=#007FFF icon="\uf1e6" block="i2c" weight=20
 namespace i2c
-/* 230805
+/* 230806
 Calliope Blöcke zur Programmierung beliebiger i2c Module ohne JavaScript
 optimiert und getestet für die gleichzeitige Nutzung mehrerer i2c Module am Calliope
+[Projekt-URL] https://github.com/calliope-net/i2c
+[README]      https://calliope-net.github.io/i2c
+
+https://wiki.seeedstudio.com/I2C_And_I2C_Address_of_Seeed_Product
 
 Code neu programmiert von Lutz Elßner im Juli 2023
 */ {

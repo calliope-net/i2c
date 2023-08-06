@@ -17,8 +17,7 @@
         "targetId": "calliopemini"
     },
     "supportedTargets": [
-        "calliopemini",
-        "microbit"
+        "calliopemini"
     ],
     "preferredEditor": "tsprj"
 }
