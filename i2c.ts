@@ -7,7 +7,7 @@ optimiert und getestet für die gleichzeitige Nutzung mehrerer i2c Module am Cal
 [Projekt-URL] https://github.com/calliope-net/i2c
 [README]      https://calliope-net.github.io/i2c
 
-https://wiki.seeedstudio.com/I2C_And_I2C_Address_of_Seeed_Product
+[i2c-Adressen-Liste] https://wiki.seeedstudio.com/I2C_And_I2C_Address_of_Seeed_Product
 
 Code neu programmiert von Lutz Elßner im Juli 2023
 */ {
@@ -112,14 +112,6 @@ Code neu programmiert von Lutz Elßner im Juli 2023
     //% block="i2c-Adresse %pADDR writeBuffer repeat %repeat" weight=30
     export function i2cWriteBuffer(pADDR: number, repeat: boolean) { pins.i2cWriteBuffer(pADDR, localBuffer, repeat) }
 
-    /*     //% group="i2c Buffer senden" advanced=true 
-        //% block="i2c-Adresse %pADDR i2cCheck %pByte"
-        export function i2cCheck(pADDR: number, pByte: number) {
-            let b = pins.createBuffer(1)
-            b.setUint8(0, pByte)
-            return pins.i2cWriteBuffer(pADDR, b)
-        }
-         */
 
     // ========== group="Modul am i2c Bus suchen" advanced=true
 
