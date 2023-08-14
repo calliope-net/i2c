@@ -1,5 +1,5 @@
 
-//% color=#007FFF icon="\uf1e6" block="i2c" weight=20
+//% color=#007FFF icon="\uf1e6" block="i2c" weight=24
 namespace i2c
 /* 230806
 Calliope Blöcke zur Programmierung beliebiger i2c Module ohne JavaScript
