@@ -1,7 +1,7 @@
 
 //% color=#007FFF icon="\uf1e6" block="i2c" weight=24
 namespace i2c
-/* 230806
+/* 230818
 Calliope Blöcke zur Programmierung beliebiger i2c Module ohne JavaScript
 optimiert und getestet für die gleichzeitige Nutzung mehrerer i2c Module am Calliope
 [Projekt-URL] https://github.com/calliope-net/i2c
@@ -12,11 +12,20 @@ optimiert und getestet für die gleichzeitige Nutzung mehrerer i2c Module am Cal
 Code neu programmiert von Lutz Elßner im Juli 2023
 */ {
     export enum ADDR {
-        RTC_PCF85063TP = 0x51,
-        LCD_16x2 = 0x3E, //LCD_16x2_V4 = 0x70,
-        RGB_16x2_V5 = 0x30, RGB_16x2_x62 = 0x62,
+        DIP_SWITCH = 0x03,
+        Relay = 0x11, Relay_x12 = 0x12,
+        JOY_Qwiic = 0x20,
+        GPIO_Qwiic = 0x27, GPIO_Qwiic_x26 = 0x26,
         LOG_Qwiic = 0x2A, LOG_Qwiic_x29 = 0x29,
-        DIP_SWITCH = 0x03
+        RGB_16x2_V5 = 0x30, RGB_16x2_x62 = 0x62,
+        OLED_16x8 = 0x3C, OLED_16x8_x3D = 0x3D,
+        LCD_16x2 = 0x3E, //LCD_16x2_V4 = 0x70,
+        V_A_Qwiic = 0x40, // 0x41, 0x44, 0x45 Wattmeter
+        KEY_Qwiic = 0x4B, KEY_Qwiic_Jumper = 0x4A,
+        EEPROM_Qwiic = 0x50, // bis 0x57
+        RTC_PCF85063TP = 0x51,
+        MOTOR_Qwiic = 0x5D,
+        LCD_20x4 = 0x72,
     }
 
     //% group="i2c Adressen"
@@ -26,7 +35,7 @@ Code neu programmiert von Lutz Elßner im Juli 2023
     // ========== group="i2c Bytes senden"
 
     //% group="i2c Bytes senden"
-    //% block="i2c-Adresse %pADDR write1Byte %pByte0 repeat %repeat" weight=56
+    //% block="i2c-Adresse %pADDR write 1Byte %pByte0 repeat %repeat" weight=56
     export function write1Byte(pADDR: number, pByte: number, repeat: boolean) {
         let b = pins.createBuffer(1)
         b.setUint8(0, pByte)
@@ -34,7 +43,7 @@ Code neu programmiert von Lutz Elßner im Juli 2023
     }
 
     //% group="i2c Bytes senden"
-    //% block="i2c-Adresse %pADDR write2Byte %pByte0 %pByte1 repeat %repeat" weight=54
+    //% block="i2c-Adresse %pADDR write 2Byte %pByte0 %pByte1 repeat %repeat" weight=54
     //% inlineInputMode=inline
     export function write2Byte(pADDR: number, pByte0: number, pByte1: number, repeat: boolean) {
         let b = pins.createBuffer(2)
@@ -44,7 +53,7 @@ Code neu programmiert von Lutz Elßner im Juli 2023
     }
 
     //% group="i2c Bytes senden"
-    //% block="i2c-Adresse %pADDR writeArray %values repeat %repeat" weight=52
+    //% block="i2c-Adresse %pADDR write Array %values repeat %repeat" weight=52
     export function writeArray(pADDR: number, values: number[], repeat: boolean) {
         let b = pins.createBuffer(values.length)
         for (let index = 0; index <= values.length - 1; index++) {
@@ -55,7 +64,7 @@ Code neu programmiert von Lutz Elßner im Juli 2023
     }
 
     //% group="i2c Bytes senden"
-    //% block="i2c-Adresse %pADDR writeCommand %pByte String %pText repeat %repeat" weight=50
+    //% block="i2c-Adresse %pADDR write Command %pByte String %pText repeat %repeat" weight=50
     //% inlineInputMode=inline
     export function writeCommandString(pADDR: number, pByte: number, pText: string, repeat: boolean) {
         let b = pins.createBuffer(pText.length + 1)
@@ -71,13 +80,13 @@ Code neu programmiert von Lutz Elßner im Juli 2023
     // ========== group="i2c Bytes empfangen"
 
     //% group="i2c Bytes empfangen"
-    //% block="i2c-Adresse %pADDR readArray UInt8LE size %size repeat %repeat" weight=42
+    //% block="i2c-Adresse %pADDR read Array %size Bytes repeat %repeat" weight=42
     export function readArray(pADDR: number, size: number, repeat: boolean) {
         return pins.i2cReadBuffer(pADDR, size, repeat).toArray(NumberFormat.UInt8LE)
     }
 
     //% group="i2c Bytes empfangen"
-    //% block="i2c-Adresse %pADDR readNumber %pNumberFormat repeat %repeat" weight=40
+    //% block="i2c-Adresse %pADDR read Number %pNumberFormat repeat %repeat" weight=40
     //% pNumberFormat.defl=NumberFormat.UInt8LE
     export function readNumber(pADDR: number, pNumberFormat: NumberFormat, repeat: boolean) {
         return pins.i2cReadBuffer(pADDR, pins.sizeOf(pNumberFormat), repeat).getNumber(pNumberFormat, 0)
