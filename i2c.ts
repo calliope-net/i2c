@@ -94,8 +94,8 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
     export function slice(buffer: Buffer, off: number, length: number): Buffer { return buffer.slice(off, length) }
 
     //% group="Buffer create" advanced=true
-    //% block="Buffer.concat(buffers[] %buffers)" weight=3
-    export function concat(buffers: Buffer[]): Buffer { return Buffer.concat(buffers) }
+    //% block="Buffer %buffer .concat(otherBuffer %other)" weight=3
+    export function concat(buffer: Buffer, other: Buffer): Buffer { return buffer.concat(other) }
 
     //% group="Buffer create" advanced=true
     //% block="Buffer %buffer .length" weight=2
