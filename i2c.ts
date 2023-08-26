@@ -2,7 +2,7 @@
 //% color=#007FFF icon="\uf1e6" block="i2c" weight=24
 /* groups='["Control", "Show", "Draw", "Delete"]' (Beispiel aus pxt-oledpaint) */
 namespace i2c
-/* 230818
+/* 230826
 Calliope Blöcke zur Programmierung beliebiger i2c Module ohne JavaScript
 optimiert und getestet für die gleichzeitige Nutzung mehrerer i2c Module am Calliope
 [Projekt-URL] https://github.com/calliope-net/i2c
@@ -50,72 +50,120 @@ Code neu programmiert von Lutz Elßner im Juli 2023
     export function i2cReadBuffer(pADDR: number, size: number, repeat: boolean): Buffer { return pins.i2cReadBuffer(pADDR, size, repeat) }
 
 
+    // ========== group="Buffer create / set"
 
 
+    //% group="Buffer create / set" advanced=true
+    //% block="Buffer.create size %size" weight=36
+    export function createBuffer(size: number): Buffer { return Buffer.create(size) }
+
+    //% group="Buffer create"
+    //% block="Buffer.fromArray(%bytes) max 32 Byte"
+    export function fromArray(bytes: number[]): Buffer { return Buffer.fromArray(bytes) }
+
+    //% group="Buffer create / set"
+    //% block="Buffer %buffer .setUint8(offset %off byte %byte)" weight=34
+    //% byte.min=0 byte.max=255
+    export function setUint8(buffer: Buffer, off: number, byte: number) { buffer.setUint8(off, byte) }
 
 
-/* 
-    // ========== group="i2c Bytes senden"
-
-    //% group="i2c Bytes senden"
-    //% block="i2c-Adresse %pADDR write 1Byte %pByte0 repeat %repeat" weight=56
-    export function write1Byte(pADDR: number, pByte: number, repeat: boolean) {
-        let b = pins.createBuffer(1)
-        b.setUint8(0, pByte)
-        pins.i2cWriteBuffer(pADDR, b, repeat)
-    }
-
-    //% group="i2c Bytes senden"
-    //% block="i2c-Adresse %pADDR write 2Byte %pByte0 %pByte1 repeat %repeat" weight=54
+    //% group="Buffer create / set"
+    //% block="Buffer %buffer .setNumber(%format offset %off value %value)" weight=33
     //% inlineInputMode=inline
-    export function write2Byte(pADDR: number, pByte0: number, pByte1: number, repeat: boolean) {
-        let b = pins.createBuffer(2)
-        b.setUint8(0, pByte0)
-        b.setUint8(1, pByte1)
-        pins.i2cWriteBuffer(pADDR, b, repeat)
-    }
+    export function setNumber(buffer: Buffer, format: NumberFormat, off: number, value: number) { buffer.setNumber(format, off, value) }
 
-    //% group="i2c Bytes senden"
-    //% block="i2c-Adresse %pADDR write Array %values repeat %repeat" weight=52
-    export function writeArray(pADDR: number, values: number[], repeat: boolean) {
-        let b = pins.createBuffer(values.length)
-        for (let index = 0; index <= values.length - 1; index++) {
-            b.setUint8(index, values.get(index))
+    // ========== group="Buffer get"
+
+    //% group="Buffer get"
+    //% block="Buffer %buffer .toArray(%format) max 32 Byte" 
+    export function toArray(buffer: Buffer, format: NumberFormat) { return buffer.toArray(format) }
+
+
+    //% group="Buffer get"
+    //% block="Buffer %buffer .getUint8(offset %off)" weight=32
+    export function getUint8(buffer: Buffer, off: number): number { return buffer.getUint8(off) }
+
+    //% group="Buffer get"
+    //% block="Buffer %buffer .getNumber(%format offset %off)" weight=31
+    export function getNumber(buffer: Buffer, format: NumberFormat, off: number): number { return buffer.getNumber(format, off) }
+
+    //% group="Buffer get"
+    //% block="Buffer %buffer .toString()" weight=31
+    export function toString(buffer: Buffer): string { return buffer.toString() }
+
+    //% group="Buffer get"
+    //% block="Buffer %buffer .toHex()" weight=31
+    export function toHex(buffer: Buffer): string { return buffer.toHex() }
+
+
+
+
+
+
+
+
+    /* 
+        // ========== group="i2c Bytes senden"
+    
+        //% group="i2c Bytes senden"
+        //% block="i2c-Adresse %pADDR write 1Byte %pByte0 repeat %repeat" weight=56
+        export function write1Byte(pADDR: number, pByte: number, repeat: boolean) {
+            let b = pins.createBuffer(1)
+            b.setUint8(0, pByte)
+            pins.i2cWriteBuffer(pADDR, b, repeat)
         }
-        pins.i2cWriteBuffer(pADDR, b, repeat)
-        control.waitMicros(50)
-    }
-
-    //% group="i2c Bytes senden"
-    //% block="i2c-Adresse %pADDR write Command %pByte String %pText repeat %repeat" weight=50
-    //% inlineInputMode=inline
-    export function writeCommandString(pADDR: number, pByte: number, pText: string, repeat: boolean) {
-        let b = pins.createBuffer(pText.length + 1)
-        b.setUint8(0, pByte)
-        for (let Index = 0; Index <= pText.length - 1; Index++) {
-            b.setUint8(Index + 1, pText.charCodeAt(Index))
+    
+        //% group="i2c Bytes senden"
+        //% block="i2c-Adresse %pADDR write 2Byte %pByte0 %pByte1 repeat %repeat" weight=54
+        //% inlineInputMode=inline
+        export function write2Byte(pADDR: number, pByte0: number, pByte1: number, repeat: boolean) {
+            let b = pins.createBuffer(2)
+            b.setUint8(0, pByte0)
+            b.setUint8(1, pByte1)
+            pins.i2cWriteBuffer(pADDR, b, repeat)
         }
-        pins.i2cWriteBuffer(pADDR, b, repeat)
-        control.waitMicros(50)
-    }
-
-
-    // ========== group="i2c Bytes empfangen"
-
-    //% group="i2c Bytes empfangen"
-    //% block="i2c-Adresse %pADDR read Array %size Bytes repeat %repeat" weight=42
-    export function readArray(pADDR: number, size: number, repeat: boolean) {
-        return pins.i2cReadBuffer(pADDR, size, repeat).toArray(NumberFormat.UInt8LE)
-    }
-
-    //% group="i2c Bytes empfangen"
-    //% block="i2c-Adresse %pADDR read Number %pNumberFormat repeat %repeat" weight=40
-    //% pNumberFormat.defl=NumberFormat.UInt8LE
-    export function readNumber(pADDR: number, pNumberFormat: NumberFormat, repeat: boolean) {
-        return pins.i2cReadBuffer(pADDR, pins.sizeOf(pNumberFormat), repeat).getNumber(pNumberFormat, 0)
-    }
-
- */
+    
+        //% group="i2c Bytes senden"
+        //% block="i2c-Adresse %pADDR write Array %values repeat %repeat" weight=52
+        export function writeArray(pADDR: number, values: number[], repeat: boolean) {
+            let b = pins.createBuffer(values.length)
+            for (let index = 0; index <= values.length - 1; index++) {
+                b.setUint8(index, values.get(index))
+            }
+            pins.i2cWriteBuffer(pADDR, b, repeat)
+            control.waitMicros(50)
+        }
+    
+        //% group="i2c Bytes senden"
+        //% block="i2c-Adresse %pADDR write Command %pByte String %pText repeat %repeat" weight=50
+        //% inlineInputMode=inline
+        export function writeCommandString(pADDR: number, pByte: number, pText: string, repeat: boolean) {
+            let b = pins.createBuffer(pText.length + 1)
+            b.setUint8(0, pByte)
+            for (let Index = 0; Index <= pText.length - 1; Index++) {
+                b.setUint8(Index + 1, pText.charCodeAt(Index))
+            }
+            pins.i2cWriteBuffer(pADDR, b, repeat)
+            control.waitMicros(50)
+        }
+    
+    
+        // ========== group="i2c Bytes empfangen"
+    
+        //% group="i2c Bytes empfangen"
+        //% block="i2c-Adresse %pADDR read Array %size Bytes repeat %repeat" weight=42
+        export function readArray(pADDR: number, size: number, repeat: boolean) {
+            return pins.i2cReadBuffer(pADDR, size, repeat).toArray(NumberFormat.UInt8LE)
+        }
+    
+        //% group="i2c Bytes empfangen"
+        //% block="i2c-Adresse %pADDR read Number %pNumberFormat repeat %repeat" weight=40
+        //% pNumberFormat.defl=NumberFormat.UInt8LE
+        export function readNumber(pADDR: number, pNumberFormat: NumberFormat, repeat: boolean) {
+            return pins.i2cReadBuffer(pADDR, pins.sizeOf(pNumberFormat), repeat).getNumber(pNumberFormat, 0)
+        }
+    
+     */
 
     // ========== advanced=true
 
@@ -123,62 +171,10 @@ Code neu programmiert von Lutz Elßner im Juli 2023
 
     // let localBuffer: Buffer
 
-    //% group="Buffer" advanced=true 
-    //% block="createBuffer size %size" weight=36
-    export function createBuffer(size: number): Buffer { return pins.createBuffer(size) }
 
-    //% group="Buffer" advanced=true 
-    //% block="Buffer %buffer .setUint8(offset %off byte %byte)" weight=34
-    //% byte.min=0 byte.max=255
-    export function setUint8(buffer: Buffer, off: number, byte: number) { buffer.setUint8(off, byte) }
-
-
-    //% group="Buffer" advanced=true 
-    //% block="Buffer %buffer .setNumber(%format offset %off value %value)" weight=33
-    //% inlineInputMode=inline
-    export function setNumber(buffer: Buffer, format: NumberFormat, off: number, value: number) { buffer.setNumber(format, off, value) }
-
-
-
-
-
-    //% group="return number" advanced=true
-    //% block="Buffer %buffer .getUint8(offset %off)" weight=32
-    export function getUint8(buffer: Buffer, off: number):number { return buffer.getUint8(off) }
-
-    //% group="return number" advanced=true 
-    //% block="Buffer %buffer .getNumber(%format offset %off)" weight=31
-    export function getNumber(buffer: Buffer, format: NumberFormat, off: number):number { return buffer.getNumber(format, off) }
-
-    //% group="return string" advanced=true
-    //% block="Buffer %buffer .toString()" weight=31
-    export function toString(buffer: Buffer):string { return buffer.toString() }
-
-    //% group="return string" advanced=true 
-    //% block="Buffer %buffer .toHex()" weight=31
-    export function toHex(buffer: Buffer):string { return buffer.toHex() }
-
-
-
-    //% group="return Buffer" subcategory="Buffer"
-    //% block="Buffer fromString %pString" weight=30
-    export function fromString(pString: string): Buffer  {
-        let bu = pins.createBuffer(pString.length)
-        for (let i = 0; i < bu.length; i++) {
-            bu.setUint8(i, pString.charCodeAt(i))
-        }
-        return bu
-    }
-
-    //% group="return Buffer" subcategory="Buffer"
-    //% block="Buffer fromByteArray %pArray max 32 Byte" weight=29
-    export function fromByteArry(pArray: number[]): Buffer {
-        let bu = pins.createBuffer(pArray.length)
-        for (let i = 0; i < bu.length; i++) {
-            bu.setUint8(i, pArray.get(i))
-        }
-        return bu
-    }
+    //% group="Buffer create" advanced=true
+    //% block="Buffer.fromUTF8(%str)"
+    export function fromUTF8(str: string): Buffer { return Buffer.fromUTF8(str) }
 
 
     //% group="Buffer" subcategory="Buffer"
@@ -191,21 +187,24 @@ Code neu programmiert von Lutz Elßner im Juli 2023
     //% block="Buffer %buffer .write(dstOffset %dstOffset srcBuffer %src)" weight=27
     export function write(buffer: Buffer, dstOffset: number, src: Buffer) { buffer.write(dstOffset, src) }
 
-  
-    //% group="return Buffer" subcategory="Buffer"
-    //% block="Buffer %buffer .concat(otherBuffer %other)" weight=25
-    export function concat(buffer: Buffer, other: Buffer): Buffer { return buffer.concat(other) }
-
     //% group="return Buffer" subcategory="Buffer"
     //% block="Buffer %buffer .slice(offset %off length %length)" weight=24
     export function slice(buffer: Buffer, off: number, length: number): Buffer { return buffer.slice(off, length) }
 
-    //% group="return Buffer[]" subcategory="Buffer"
+    //% group="Buffer[]" subcategory="Buffer"
     //% block="Buffer %buffer .chunked(maxSize %maxSize)" weight=26
     export function chunked(buffer: Buffer, maxSize: number): Buffer[] { return buffer.chunked(maxSize) }
 
 
 
+    //% group="Buffer[]" subcategory="Buffer"
+    //% block="Buffer.chunkedFromUTF8(String %str maxBytes %maxBytes)" weight=26
+    export function chunkedFromUTF8(str: string, maxBytes: number): Buffer[] { return Buffer.chunkedFromUTF8(str, maxBytes) }
+
+
+    //% group="Buffer create" subcategory="Buffer"
+    //% block="Buffer.concat(buffers[] %buffers)" weight=25
+    export function concat(buffers: Buffer[]): Buffer { return Buffer.concat(buffers) }
 
 
 
