@@ -14,52 +14,55 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
 */ {
     export enum eADDR {
         // Grove - 6-Position DIP Switch; Grove - 5-Way Switch
-        DIP_SWITCH = 0x03,
+        DIP_Switch_x03 = 0x03,
 
         // Grove - 4-Channel SPDT Relay
-        Relay = 0x11, Relay_x12 = 0x12,
+        Grove_Relay_x11 = 0x11, Grove_Relay_x12 = 0x12,
+
+        // Qwiic Single Relay
+        Qwiic_Relay_x18 = 0x18, Qwiic_Relay_x19 = 0x19,
 
         // SparkFun Qwiic Joystick
-        Joystick = 0x20,
+        Joystick_x20 = 0x20,
 
         // SparkFun Qwiic GPIO
-        GPIO = 0x27, GPIO_x26 = 0x26, GPIO_x25 = 0x25, GPIO_x24 = 0x24,
+        GPIO_x27 = 0x27, GPIO_x26 = 0x26, GPIO_x25 = 0x25, GPIO_x24 = 0x24,
         GPIO_x23 = 0x23, GPIO_x22 = 0x22, GPIO_x21 = 0x21, GPIO_x20 = 0x20,
 
         // Power Delivery Board - USB-C (Qwiic)
-        Power = 0x28, Power_x29 = 0x29, Power_x2A = 0x2A, Power_x2B = 0x2B,
+        //Power = 0x28, Power_x29 = 0x29, Power_x2A = 0x2A, Power_x2B = 0x2B,
 
         // SparkFun Qwiic OpenLog
-        OpenLog = 0x2A, OpenLog_x29 = 0x29,
+        LOG_x2A = 0x2A, LOG_x29 = 0x29,
 
         // Grove - LCD RGB Backlight (eigene i2c Adresse für RGB, für Text: LCD_16x2)
-        RGB_16x2_V5 = 0x30, RGB_16x2_x62 = 0x62,
+        RGB_16x2_V5_x30 = 0x30, RGB_16x2_x62 = 0x62,
 
         // Grove - OLED Yellow&Blue Display 0.96(SSD1315) - SPI/IIC -3.3V/5V
-        OLED_16x8 = 0x3C, OLED_16x8_x3D = 0x3D,
+        OLED_16x8_x3C = 0x3C, OLED_16x8_x3D = 0x3D,
 
         // Grove - 16x2 LCD
-        LCD_16x2 = 0x3E, //LCD_16x2_V4 = 0x70,
+        LCD_16x2_x3E = 0x3E, //LCD_16x2_V4 = 0x70,
 
         // Gravity: I2C Digital Wattmeter
-        Wattmeter = 0x45, Wattmeter_x40 = 0x40, Wattmeter_x41 = 0x41, Wattmeter_x44 = 0x44,
+        Wattmeter_x45 = 0x45, Wattmeter_x40 = 0x40, Wattmeter_x41 = 0x41, Wattmeter_x44 = 0x44,
 
         // SparkFun Qwiic Keypad - 12 Button
-        Keypad = 0x4B, Keypad_Jumper = 0x4A,
+        Keypad_x4B = 0x4B, Keypad_x4A_Jumper = 0x4A,
 
         // SparkFun Qwiic EEPROM Breakout - 512Kbit
-        EEPROM = 0x50, EEPROM_x51 = 0x51, EEPROM_x52 = 0x52, EEPROM_x53 = 0x53,
+        EEPROM_x50 = 0x50, EEPROM_x51 = 0x51, EEPROM_x52 = 0x52, EEPROM_x53 = 0x53,
         EEPROM_x54 = 0x54, EEPROM_x55 = 0x55, EEPROM_x56 = 0x56, EEPROM_x57 = 0x57,
 
         // Grove - High Precision RTC (Real Time Clock)
-        RTC_PCF85063TP = 0x51,
+        RTC_x51 = 0x51,
 
         // SparkFun Qwiic Motor Driver
-        Motor = 0x5D, Motor_x58 = 0x58, Motor_x59 = 0x59, Motor_x5A = 0x5A, Motor_x5B = 0x5B, Motor_x5C = 0x5C,
+        Motor_x5D = 0x5D, Motor_x58 = 0x58, Motor_x59 = 0x59, Motor_x5A = 0x5A, Motor_x5B = 0x5B, Motor_x5C = 0x5C,
         Motor_x5E = 0x5E, Motor_x5F = 0x5F, Motor_x60 = 0x60, Motor_x61 = 0x61,
 
         // SparkFun 20x4 SerLCD - RGB Backlight (Qwiic)
-        LCD_20x4 = 0x72
+        LCD_20x4_x72 = 0x72
     }
 
 
