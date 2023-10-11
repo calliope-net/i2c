@@ -68,12 +68,14 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
 
     // ========== group="i2c Adressen"
 
+    //% blockId=i2c_eADDR
     //% group="i2c Adressen"
-    //% block="i2c Adresse von Modul %pADDR" weight=6
-    export function i2cAdressen(pADDR: eADDR): number { return pADDR }
+    //% block="%pADDR" weight=6
+    export function i2c_eADDR(pADDR: eADDR): number { return pADDR }
 
     //% group="i2c Adressen"
     //% block="i2c Adresse finden von %vonADDR bis %bisADDR" weight=2
+    //% vonADDR.shadow="i2c_eADDR" bisADDR.shadow="i2c_eADDR"
     //% vonADDR.min=0 vonADDR.max=127 bisADDR.min=0 bisADDR.max=127
     export function i2cBus(vonADDR: number, bisADDR: number) { return i2cCheck(vonADDR, bisADDR) }
 
@@ -82,14 +84,17 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
 
     //% group="i2c Buffer senden / empfangen"
     //% block="i2c %pADDR writeBuffer %buf repeat %repeat" weight=6
+    //% pADDR.shadow="i2c_eADDR"
     export function i2cWriteBuffer(pADDR: number, buf: Buffer, repeat: boolean) { pins.i2cWriteBuffer(pADDR, buf, repeat) }
 
     //% group="i2c Buffer senden / empfangen"
     //% block="i2c %pADDR writeBuffer %buf repeat %repeat" weight=4
+    //% pADDR.shadow="i2c_eADDR"
     export function i2cWriteBuffer_return(pADDR: number, buf: Buffer, repeat: boolean): number { return pins.i2cWriteBuffer(pADDR, buf, repeat) }
 
     //% group="i2c Buffer senden / empfangen"
     //% block="i2c %pADDR readBuffer size %size repeat %repeat" weight=2
+    //% pADDR.shadow="i2c_eADDR"
     export function i2cReadBuffer(pADDR: number, size: number, repeat: boolean): Buffer { return pins.i2cReadBuffer(pADDR, size, repeat) }
 
 
