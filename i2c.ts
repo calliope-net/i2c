@@ -74,10 +74,32 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
     export function i2c_eADDR(pADDR: eADDR): number { return pADDR }
 
     //% group="i2c Adressen"
-    //% block="i2c Adresse finden von %vonADDR bis %bisADDR" weight=2
+    //% block="i2c-Check von %vonADDR bis %bisADDR Pause %ms ms" weight=2
     //% vonADDR.shadow="i2c_eADDR" bisADDR.shadow="i2c_eADDR"
-    //% vonADDR.min=0 vonADDR.max=127 bisADDR.min=0 bisADDR.max=127
-    export function i2cBus(vonADDR: number, bisADDR: number) { return i2cCheck(vonADDR, bisADDR) }
+    //% vonADDR.min=0 vonADDR.max=127
+    //% bisADDR.min=0 bisADDR.max=127 bisADDR.defl=i2c.eADDR.LCD_20x4_x72
+    //% ms.min=0 ms.max=500 ms.defl=100
+    export function i2cBus(vonADDR: number, bisADDR: number, ms: number) {
+        //return i2cCheck(vonADDR, bisADDR) 
+        let a: number[]=[]
+        if (between(vonADDR, 0, 127) && between(bisADDR, 0, 127) && vonADDR <= bisADDR) {
+            let b = Buffer.create(1)
+            b.setUint8(0, 0)
+            let ex: number = 0
+            for (let i = vonADDR; i <= bisADDR; i++) {
+                ex = pins.i2cWriteBuffer(i, b)
+                if (ex == 0) {
+                    a.push(i)
+                }
+                if (a.length >= 32)
+                    break
+                basic.pause(ms)
+            }
+        }
+        return a
+    }
+
+    function between(i0: number, i1: number, i2: number): boolean { return (i0 >= i1 && i0 <= i2) }
 
 
     // ========== group="i2c Buffer senden / empfangen"
@@ -102,6 +124,7 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
 
     //% group="Buffer anlegen"
     //% block="Buffer.fromArray(%bytes) max 32 Byte"
+    //% blockSetVariable=buffer
     export function fromArray(bytes: number[]): Buffer { return Buffer.fromArray(bytes) }
 
 
@@ -110,7 +133,7 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
     //% group="Buffer lesen"
     //% block="Buffer %buffer .toArray(%format) max 32 Byte" weight=2
     //% format.defl=NumberFormat.UInt8LE
-    export function toArray(buffer: Buffer, format: NumberFormat) { return buffer.toArray(format) }
+    export function toArray(buffer: Buffer, format: NumberFormat): number[] { return buffer.toArray(format) }
 
     //% group="Buffer lesen"
     //% block="Buffer %buffer .toString()" weight=1
@@ -124,14 +147,17 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
 
     //% group="Buffer anlegen" advanced=true
     //% block="Buffer.create size %size" weight=6
+    //% blockSetVariable=buffer
     export function create(size: number): Buffer { return Buffer.create(size) }
 
     //% group="Buffer anlegen" advanced=true
     //% block="Buffer.fromString(%str)" weight=5
+    //% blockSetVariable=buffer
     export function fromUTF8(str: string): Buffer { return Buffer.fromUTF8(str) }
 
     //% group="Buffer anlegen" advanced=true
     //% block="Buffer %buffer .concat(otherBuffer %other)" weight=3
+    //% blockSetVariable=buffer
     export function concat(buffer: Buffer, other: Buffer): Buffer { return buffer.concat(other) }
 
     //% group="Buffer anlegen" advanced=true
