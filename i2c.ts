@@ -16,10 +16,13 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
         // Grove - 6-Position DIP Switch; Grove - 5-Way Switch
         DIP_Switch_x03 = 0x03,
 
+        intern_x10 = 0x10,
+
         // Grove - 4-Channel SPDT Relay
         Grove_Relay_x11 = 0x11, Grove_Relay_x12 = 0x12,
 
         // Qwiic Single Relay
+        intern_x18 = 0x18,
         Qwiic_Relay_x18 = 0x18, Qwiic_Relay_x19 = 0x19,
 
         // SparkFun Qwiic Joystick
@@ -61,6 +64,8 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
         Motor_x5D = 0x5D, Motor_x58 = 0x58, Motor_x59 = 0x59, Motor_x5A = 0x5A, Motor_x5B = 0x5B, Motor_x5C = 0x5C,
         Motor_x5E = 0x5E, Motor_x5F = 0x5F, Motor_x60 = 0x60, Motor_x61 = 0x61,
 
+        intern_x68 = 0x68,
+
         // SparkFun 20x4 SerLCD - RGB Backlight (Qwiic)
         LCD_20x4_x72 = 0x72
     }
@@ -81,7 +86,7 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
     //% ms.min=0 ms.max=500 ms.defl=100
     export function i2cBus(vonADDR: number, bisADDR: number, ms: number) {
         //return i2cCheck(vonADDR, bisADDR) 
-        let a: number[]=[]
+        let a: number[] = []
         if (between(vonADDR, 0, 127) && between(bisADDR, 0, 127) && vonADDR <= bisADDR) {
             let b = Buffer.create(1)
             b.setUint8(0, 0)
