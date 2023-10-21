@@ -2,8 +2,9 @@
 //% color=#007FFF icon="\uf1e6" block="i2c" weight=24
 /* groups='["Control", "Show", "Draw", "Delete"]' (Beispiel aus pxt-oledpaint) */
 namespace i2c
-/* 230829
-Calliope Blöcke zur Programmierung beliebiger i2c Module ohne JavaScript
+/* 230829 231021 https://github.com/calliope-net/i2c
+Calliope Blöcke zur Programmierung beliebiger i2c Module ohne JavaScript.
+Typ 'Buffer' mit Blöcken verwenden.
 optimiert und getestet für die gleichzeitige Nutzung mehrerer i2c Module am Calliope
 [Projekt-URL] https://github.com/calliope-net/i2c
 [README]      https://calliope-net.github.io/i2c
