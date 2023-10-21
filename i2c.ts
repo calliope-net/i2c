@@ -78,60 +78,77 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
     //% group="i2c Adresse von Modul"
     //% block="%pADDR" weight=6
     export function i2c_eADDR(pADDR: eADDR): number { return pADDR }
-/* 
-    //% group="i2c Adressen"
-    //% block="i2c-Check von %vonADDR bis %bisADDR Pause %ms ms" weight=2
-    //% vonADDR.shadow="i2c_eADDR" bisADDR.shadow="i2c_eADDR"
-    //% vonADDR.min=0 vonADDR.max=127
-    //% bisADDR.min=0 bisADDR.max=127 bisADDR.defl=i2c.eADDR.LCD_20x4_x72
-    //% ms.min=0 ms.max=500 ms.defl=100
-    export function i2cBus(vonADDR: number, bisADDR: number, ms: number) {
-        //return i2cCheck(vonADDR, bisADDR) 
-        let a: number[] = []
-        if (between(vonADDR, 0, 127) && between(bisADDR, 0, 127) && vonADDR <= bisADDR) {
-            let b = Buffer.create(1)
-            b.setUint8(0, 0)
-            let ex: number = 0
-            for (let i = vonADDR; i <= bisADDR; i++) {
-                ex = pins.i2cWriteBuffer(i, b)
-                if (ex == 0) {
-                    a.push(i)
+    /* 
+        //% group="i2c Adressen"
+        //% block="i2c-Check von %vonADDR bis %bisADDR Pause %ms ms" weight=2
+        //% vonADDR.shadow="i2c_eADDR" bisADDR.shadow="i2c_eADDR"
+        //% vonADDR.min=0 vonADDR.max=127
+        //% bisADDR.min=0 bisADDR.max=127 bisADDR.defl=i2c.eADDR.LCD_20x4_x72
+        //% ms.min=0 ms.max=500 ms.defl=100
+        export function i2cBus(vonADDR: number, bisADDR: number, ms: number) {
+            //return i2cCheck(vonADDR, bisADDR) 
+            let a: number[] = []
+            if (between(vonADDR, 0, 127) && between(bisADDR, 0, 127) && vonADDR <= bisADDR) {
+                let b = Buffer.create(1)
+                b.setUint8(0, 0)
+                let ex: number = 0
+                for (let i = vonADDR; i <= bisADDR; i++) {
+                    ex = pins.i2cWriteBuffer(i, b)
+                    if (ex == 0) {
+                        a.push(i)
+                    }
+                    if (a.length >= 32)
+                        break
+                    basic.pause(ms)
                 }
-                if (a.length >= 32)
-                    break
-                basic.pause(ms)
             }
+            return a
         }
-        return a
-    }
-
-    function between(i0: number, i1: number, i2: number): boolean { return (i0 >= i1 && i0 <= i2) }
- */
+    
+        function between(i0: number, i1: number, i2: number): boolean { return (i0 >= i1 && i0 <= i2) }
+     */
 
     // ========== group="i2c Buffer senden / empfangen"
 
-    //% group="i2c Buffer senden / empfangen"
-    //% block="i2c %pADDR writeBuffer %buf repeat %repeat" weight=6
-    //% pADDR.shadow="i2c_eADDR"
-    export function i2cWriteBuffer(pADDR: number, buf: Buffer, repeat: boolean) { pins.i2cWriteBuffer(pADDR, buf, repeat) }
+
 
     //% group="i2c Buffer senden / empfangen"
-    //% block="i2c %pADDR writeBuffer %buf repeat %repeat" weight=4
+    //% block="i2c %pADDR writeBuffer %buf || repeat %repeat" weight=6
     //% pADDR.shadow="i2c_eADDR"
-    export function i2cWriteBuffer_return(pADDR: number, buf: Buffer, repeat: boolean): number { return pins.i2cWriteBuffer(pADDR, buf, repeat) }
+    //% buf.shadow="i2c_fromArray"
+    //% repeat.shadow="toggleOnOff"
+    export function i2cWriteBuffer(pADDR: number, buf: Buffer, repeat: boolean = false) { pins.i2cWriteBuffer(pADDR, buf, repeat) }
 
     //% group="i2c Buffer senden / empfangen"
-    //% block="i2c %pADDR readBuffer size %size repeat %repeat" weight=2
+    //% block="i2c %pADDR writeBuffer =ErrorCode %buf || repeat %repeat" weight=4
     //% pADDR.shadow="i2c_eADDR"
-    export function i2cReadBuffer(pADDR: number, size: number, repeat: boolean): Buffer { return pins.i2cReadBuffer(pADDR, size, repeat) }
+    //% buf.shadow="i2c_fromByte"
+    //% repeat.shadow="toggleOnOff"
+    export function i2cWriteBuffer_return(pADDR: number, buf: Buffer, repeat: boolean = false): number { return pins.i2cWriteBuffer(pADDR, buf, repeat) }
+
+    //% group="i2c Buffer senden / empfangen"
+    //% block="i2c %pADDR readBuffer size %size || repeat %repeat" weight=2
+    //% pADDR.shadow="i2c_eADDR"
+    export function i2cReadBuffer(pADDR: number, size: number, repeat: boolean = false): Buffer { return pins.i2cReadBuffer(pADDR, size, repeat) }
 
 
     // ========== group="Buffer anlegen"
 
+
+
+    //% blockId=i2c_fromByte
     //% group="Buffer anlegen"
-    //% block="Buffer.fromArray(%bytes) max 32 Byte"
+    //% block="%byte"
+    export function i2c_fromByte(byte: number): Buffer { return Buffer.fromArray([byte]) }
+
+
+    //% blockId=i2c_fromArray
+    //% group="Buffer anlegen"
+    //% block="fromArray %bytes"
     //% blockSetVariable=buffer
-    export function fromArray(bytes: number[]): Buffer { return Buffer.fromArray(bytes) }
+    export function i2c_fromArray(bytes: number[]): Buffer { return Buffer.fromArray(bytes) }
+
+
 
 
     // ========== group="Buffer lesen"
@@ -211,48 +228,48 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
 
 
     // ========== subcategory="Buffer"
-/* 
-    // ========== group="Fill (a fragment) of the buffer with given value."
-
-    //% group="Fill (a fragment) of the buffer with given value." subcategory="Buffer"
-    //% block="Buffer %buffer .fill(Byte %byte)" weight=3
-    export function fill(buffer: Buffer, byte: number) { buffer.fill(byte) }
-
-    //% group="Fill (a fragment) of the buffer with given value." subcategory="Buffer"
-    //% block="Buffer %buffer .fill(Byte %byte offset %off length %length)" weight=2
-    //% byte.min=0 byte.max=255
-    //% inlineInputMode=inline
-    export function fill_fragment(buffer: Buffer, byte: number, off: number, length: number) { buffer.fill(byte, off, length) }
-
-
-    // ========== group="Write contents of src at dstOffset in current buffer."
-
-    //% group="Write contents of src at dstOffset in current buffer." subcategory="Buffer"
-    //% block="Buffer %buffer .write(dstOffset %dstOffset srcBuffer %src)"
-    export function write(buffer: Buffer, dstOffset: number, src: Buffer) { buffer.write(dstOffset, src) }
-
-
-    // ========== group="Splits buffer into parts no larger than specified."
-
-    //% group="Splits buffer into parts no larger than specified." subcategory="Buffer"
-    //% block="Buffer %buffer .chunked(maxSize %maxSize)" weight=3
-    export function chunked(buffer: Buffer, maxSize: number): Buffer[] { return buffer.chunked(maxSize) }
-
-    //% group="Splits buffer into parts no larger than specified." subcategory="Buffer"
-    //% block="Buffer.chunkedFromUTF8(String %str maxBytes %maxBytes)" weight=2
-    export function chunkedFromUTF8(str: string, maxBytes: number): Buffer[] { return Buffer.chunkedFromUTF8(str, maxBytes) }
-
-
-    // ========== group="Convert a buffer to its hexadecimal representation."
-
-    //% group="Convert a buffer to its hexadecimal representation." subcategory="Buffer"
-    //% block="Buffer.fromHex(%hex)" weight=4
-    export function fromHex(hex: string): Buffer { return Buffer.fromHex(hex) }
-
-    //% group="Convert a buffer to its hexadecimal representation." subcategory="Buffer"
-    //% block="Buffer %buffer .toHex()" weight=2
-    export function toHex(buffer: Buffer): string { return buffer.toHex() }
- */
+    /* 
+        // ========== group="Fill (a fragment) of the buffer with given value."
+    
+        //% group="Fill (a fragment) of the buffer with given value." subcategory="Buffer"
+        //% block="Buffer %buffer .fill(Byte %byte)" weight=3
+        export function fill(buffer: Buffer, byte: number) { buffer.fill(byte) }
+    
+        //% group="Fill (a fragment) of the buffer with given value." subcategory="Buffer"
+        //% block="Buffer %buffer .fill(Byte %byte offset %off length %length)" weight=2
+        //% byte.min=0 byte.max=255
+        //% inlineInputMode=inline
+        export function fill_fragment(buffer: Buffer, byte: number, off: number, length: number) { buffer.fill(byte, off, length) }
+    
+    
+        // ========== group="Write contents of src at dstOffset in current buffer."
+    
+        //% group="Write contents of src at dstOffset in current buffer." subcategory="Buffer"
+        //% block="Buffer %buffer .write(dstOffset %dstOffset srcBuffer %src)"
+        export function write(buffer: Buffer, dstOffset: number, src: Buffer) { buffer.write(dstOffset, src) }
+    
+    
+        // ========== group="Splits buffer into parts no larger than specified."
+    
+        //% group="Splits buffer into parts no larger than specified." subcategory="Buffer"
+        //% block="Buffer %buffer .chunked(maxSize %maxSize)" weight=3
+        export function chunked(buffer: Buffer, maxSize: number): Buffer[] { return buffer.chunked(maxSize) }
+    
+        //% group="Splits buffer into parts no larger than specified." subcategory="Buffer"
+        //% block="Buffer.chunkedFromUTF8(String %str maxBytes %maxBytes)" weight=2
+        export function chunkedFromUTF8(str: string, maxBytes: number): Buffer[] { return Buffer.chunkedFromUTF8(str, maxBytes) }
+    
+    
+        // ========== group="Convert a buffer to its hexadecimal representation."
+    
+        //% group="Convert a buffer to its hexadecimal representation." subcategory="Buffer"
+        //% block="Buffer.fromHex(%hex)" weight=4
+        export function fromHex(hex: string): Buffer { return Buffer.fromHex(hex) }
+    
+        //% group="Convert a buffer to its hexadecimal representation." subcategory="Buffer"
+        //% block="Buffer %buffer .toHex()" weight=2
+        export function toHex(buffer: Buffer): string { return buffer.toHex() }
+     */
 
 
 
