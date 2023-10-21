@@ -19,21 +19,21 @@ namespace i2c
                 ex = pins.i2cWriteBuffer(i, b)
                 if (ex == 0) {
                     a.push(i)
+                    if (a.length >= 32)
+                        break
                 }
-                if (a.length >= 32)
-                    break
                 basic.pause(ms)
             }
         }
         return a
     }
 
-
+/* 
     //% group="sammelt gültige i2c-Adressen in Array" subcategory="i2c Scan"
     //% block="Array %bytes toHex()"
-    export function arrayToHex(bytes: number[]): string {
+    function arrayToHex(bytes: number[]): string {
         return Buffer.fromArray(bytes).toHex()
-    }
+    } */
 
     //% group="sammelt gültige i2c-Adressen in HEX-String" subcategory="i2c Scan"
     //% block="i2c-Scan von %vonADDR bis %bisADDR Pause %ms ms"
@@ -47,7 +47,7 @@ namespace i2c
 
 
     //% group="Logik" subcategory="i2c Scan"
-    //% block="%i0 zwischen %i1 und %i2" weight=4
+    //% block="%i0 zwischen %i1 und %i2"
     export function between(i0: number, i1: number, i2: number): boolean { return (i0 >= i1 && i0 <= i2) }
 
 } // i2cscan.ts
