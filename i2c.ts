@@ -14,16 +14,16 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
 */ {
     export enum eADDR {
         // Grove - 6-Position DIP Switch; Grove - 5-Way Switch
-        DIP_Switch_x03 = 0x03,
+        DIP_x03 = 0x03,
 
         intern_x10 = 0x10,
 
         // Grove - 4-Channel SPDT Relay
-        Grove_Relay_x11 = 0x11, Grove_Relay_x12 = 0x12,
+        Rel_x11 = 0x11, Rel_x12 = 0x12,
 
         // Qwiic Single Relay
         intern_x18 = 0x18,
-        Qwiic_Relay_x18 = 0x18, Qwiic_Relay_x19 = 0x19,
+        Relay_x18 = 0x18, Relay_x19 = 0x19, Relay_x1E = 0x1E,
 
         // SparkFun Qwiic Joystick
         Joystick_x20 = 0x20,
@@ -39,7 +39,7 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
         LOG_x2A = 0x2A, LOG_x29 = 0x29,
 
         // Grove - LCD RGB Backlight (eigene i2c Adresse für RGB, für Text: LCD_16x2)
-        RGB_16x2_V5_x30 = 0x30, RGB_16x2_x62 = 0x62,
+        RGB_16x2_x30 = 0x30, RGB_16x2_V5 = 0x30, RGB_16x2_x62 = 0x62,
 
         // Grove - OLED Yellow&Blue Display 0.96(SSD1315) - SPI/IIC -3.3V/5V
         OLED_16x8_x3C = 0x3C, OLED_16x8_x3D = 0x3D,
@@ -263,6 +263,7 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
         //% block="i2c-Adresse finden von %vonADDR bis %bisADDR" weight=10
         //% vonADDR.min=0 vonADDR.max=127 bisADDR.min=0 bisADDR.max=127
     */
+    /* 
     function i2cCheck(vonADDR: number, bisADDR: number) {
         if (storage.getNumber(StorageSlots.s7) < vonADDR || storage.getNumber(StorageSlots.s7) > bisADDR) {
             storage.putNumber(StorageSlots.s7, vonADDR)
@@ -280,6 +281,6 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
         } else {
             return error
         }
-    }
+    } */
 
 } // i2c.ts
