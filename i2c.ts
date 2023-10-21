@@ -11,7 +11,7 @@ optimiert und getestet für die gleichzeitige Nutzung mehrerer i2c Module am Cal
 
 [i2c-Adressen-Liste] https://wiki.seeedstudio.com/I2C_And_I2C_Address_of_Seeed_Product
 
-Code neu programmiert von Lutz Elßner im Juli, August 2023
+Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
 */ {
     export enum eADDR {
         // Grove - 6-Position DIP Switch; Grove - 5-Way Switch
@@ -77,44 +77,46 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
     //% blockId=i2c_eADDR
     //% group="calliope-net.github.io/i2c"
     //% block="%pADDR" weight=6
+    //% blockSetVariable=i2cAdresse
     export function i2c_eADDR(pADDR: eADDR): number { return pADDR }
-   
-
-    // ========== group="i2c Buffer senden / empfangen"
 
 
+    // ========== group="i2c Buffer senden an Modul"
 
-    //% group="i2c Buffer senden"
+    //% group="Buffer senden an i2c-Modul"
     //% block="i2c %pADDR writeBuffer %buf || repeat %repeat" weight=8
     //% pADDR.shadow="i2c_eADDR"
     //% buf.shadow="i2c_fromArray"
     //% repeat.shadow="toggleOnOff"
     export function i2cWriteArray(pADDR: number, buf: Buffer, repeat: boolean = false) { pins.i2cWriteBuffer(pADDR, buf, repeat) }
 
-
-    //% group="i2c Buffer senden"
+    //% group="Buffer senden an i2c-Modul"
     //% block="i2c %pADDR writeBuffer %buf || repeat %repeat" weight=6
     //% pADDR.shadow="i2c_eADDR"
     //% repeat.shadow="toggleOnOff"
     export function i2cWriteBuffer(pADDR: number, buf: Buffer, repeat: boolean = false) { pins.i2cWriteBuffer(pADDR, buf, repeat) }
 
-    //% group="i2c Buffer senden / return i2c Fehlercode"
+    //% group="Buffer senden an i2c-Modul mit Fehlercode (0 ist kein Fehler)"
     //% block="i2c %pADDR writeBuffer %buf || repeat %repeat" weight=4
     //% pADDR.shadow="i2c_eADDR"
     //% repeat.shadow="toggleOnOff"
+    //% blockSetVariable=i2cError
     export function i2cWriteBuffer_return(pADDR: number, buf: Buffer, repeat: boolean = false): number { return pins.i2cWriteBuffer(pADDR, buf, repeat) }
 
-    //% group="i2c Buffer empfangen"
-    //% block="i2c %pADDR readBuffer size %size || repeat %repeat" weight=2
+
+    // ========== group="Buffer empfangen von i2c-Modul"
+
+    //% group="Buffer empfangen von i2c-Modul"
+    //% block="i2c %pADDR readBuffer size %size || repeat %repeat"
     //% pADDR.shadow="i2c_eADDR"
-    //% blockSetVariable=buffer
+    //% blockSetVariable=readBuffer
     export function i2cReadBuffer(pADDR: number, size: number, repeat: boolean = false): Buffer { return pins.i2cReadBuffer(pADDR, size, repeat) }
 
 
 
 
     // ========== subcategory="Buffer.create"
-  
+
     // ========== group="Buffer anlegen"
 
 
@@ -123,19 +125,16 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
     //% blockSetVariable=buffer
     export function create(size: number): Buffer { return Buffer.create(size) }
 
-
     //% group="Buffer anlegen" subcategory="Buffer.create"
     //% block="Buffer %buffer .setUint8(offset %off byte %byte)" weight=6
     //% byte.min=0 byte.max=255
     export function setUint8(buffer: Buffer, off: number, byte: number) { buffer.setUint8(off, byte) }
-
 
     //% group="Buffer anlegen" subcategory="Buffer.create"
     //% block="Buffer %buffer .setNumber(%format offset %off value %value)" weight=4
     //% inlineInputMode=inline
     //% format.defl=NumberFormat.UInt8LE
     export function setNumber(buffer: Buffer, format: NumberFormat, off: number, value: number) { buffer.setNumber(format, off, value) }
-
 
     //% group="Buffer anlegen" subcategory="Buffer.create"
     //% block="sizeOfNumberFormat %format" weight=2
@@ -147,7 +146,7 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
     export function length(buffer: Buffer): number { return buffer.length }
 
 
-    // ========== group="Buffer anlegen aus Daten"
+    // ========== group="Buffer anlegen aus Daten" subcategory="Buffer.create"
 
     //% blockId=i2c_fromArray
     //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
@@ -172,29 +171,32 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
 
 
 
-
+    // ========== subcategory="Buffer.get"
 
     // ========== group="Byte" subcategory="Buffer.get"
 
     //% group="Byte" subcategory="Buffer.get"
-    //% block="Buffer %buffer .getUint8(offset %off)" weight=2
+    //% block="Buffer %buffer .getUint8(offset %off)"
     export function getUint8(buffer: Buffer, off: number): number { return buffer.getUint8(off) }
 
 
-    // ========== group="Number"
+    // ========== group="Number" subcategory="Buffer.get"
 
     //% group="Number" subcategory="Buffer.get"
-    //% block="Buffer %buffer .getNumber(%format offset %off)" weight=6
+    //% block="Buffer %buffer .getNumber(%format offset %off)"
     //% format.defl=NumberFormat.UInt8LE
     export function getNumber(buffer: Buffer, format: NumberFormat, off: number): number { return buffer.getNumber(format, off) }
 
 
-    // ========== group="Array"
+    // ========== group="Array" subcategory="Buffer.get"
 
     //% group="Array" subcategory="Buffer.get"
-    //% block="Buffer %buffer .toArray(%format) max 32 Byte" weight=2
+    //% block="Buffer %buffer .toArray(%format) max 32 Byte"
     //% format.defl=NumberFormat.UInt8LE
     export function toArray(buffer: Buffer, format: NumberFormat): number[] { return buffer.toArray(format) }
+
+
+    // ========== group="String" subcategory="Buffer.get"
 
     //% group="String" subcategory="Buffer.get"
     //% block="Buffer %buffer .toString()" weight=4

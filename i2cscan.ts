@@ -28,12 +28,6 @@ namespace i2c
         return a
     }
 
-/* 
-    //% group="sammelt gültige i2c-Adressen in Array" subcategory="i2c Scan"
-    //% block="Array %bytes toHex()"
-    function arrayToHex(bytes: number[]): string {
-        return Buffer.fromArray(bytes).toHex()
-    } */
 
     //% group="sammelt gültige i2c-Adressen in HEX-String" subcategory="i2c Scan"
     //% block="i2c-Scan von %vonADDR bis %bisADDR Pause %ms ms"

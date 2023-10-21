@@ -3,6 +3,8 @@ namespace i2c
 /*
 */ {
 
+    // ========== advanced=true
+
     // ========== group="Fill (a fragment) of the buffer with given value."
 
     //% group="Fill (a fragment) of the buffer with given value." advanced=true
@@ -40,5 +42,5 @@ namespace i2c
     //% block="Buffer.chunkedFromUTF8(String %str maxBytes %maxBytes)" weight=2
     export function chunkedFromUTF8(str: string, maxBytes: number): Buffer[] { return Buffer.chunkedFromUTF8(str, maxBytes) }
 
-   
+
 } // i2cbuffer.ts
