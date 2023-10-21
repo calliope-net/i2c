@@ -72,13 +72,13 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
     }
 
 
-    // ========== group="i2c Adressen"
+    // ========== group="i2c Adresse von Modul"
 
     //% blockId=i2c_eADDR
-    //% group="i2c Adressen"
+    //% group="i2c Adresse von Modul"
     //% block="%pADDR" weight=6
     export function i2c_eADDR(pADDR: eADDR): number { return pADDR }
-
+/* 
     //% group="i2c Adressen"
     //% block="i2c-Check von %vonADDR bis %bisADDR Pause %ms ms" weight=2
     //% vonADDR.shadow="i2c_eADDR" bisADDR.shadow="i2c_eADDR"
@@ -106,7 +106,7 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
     }
 
     function between(i0: number, i1: number, i2: number): boolean { return (i0 >= i1 && i0 <= i2) }
-
+ */
 
     // ========== group="i2c Buffer senden / empfangen"
 
@@ -211,7 +211,7 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
 
 
     // ========== subcategory="Buffer"
-
+/* 
     // ========== group="Fill (a fragment) of the buffer with given value."
 
     //% group="Fill (a fragment) of the buffer with given value." subcategory="Buffer"
@@ -252,7 +252,7 @@ Code neu programmiert von Lutz Elßner im Juli, August 2023
     //% group="Convert a buffer to its hexadecimal representation." subcategory="Buffer"
     //% block="Buffer %buffer .toHex()" weight=2
     export function toHex(buffer: Buffer): string { return buffer.toHex() }
-
+ */
 
 
 
