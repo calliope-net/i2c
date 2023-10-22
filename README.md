@@ -57,8 +57,6 @@ Zum **Senden** stellt die Erweiterung 'i2c' den Block **writeBuffer** bereit. De
    * In der Variable i2cError wird das Ergebnis vom Senden gespeichert. Der Wert 0 bedeutet kein Fehler.
    * Der Wert -1010 (dezimal) wird zurück gegeben, wenn an der I²C Adresse kein I²C Modul antwortet und den Buffer empfängt.
 
----
-
 Zum **Empfangen** stellt die Erweiterung 'i2c' den Block **readBuffer** bereit.
 
 1. **readBuffer**
@@ -66,7 +64,7 @@ Zum **Empfangen** stellt die Erweiterung 'i2c' den Block **readBuffer** bereit.
    * Der empfangene Buffer wird der Variable readBuffer zugewiesen.
    * Im Bereich *Buffer.get* gibt es mehrere Möglichkeiten, den Buffer auszuwerten. Dazu muss die Variable readBuffer in den Block eingefügt werden.
 
----
+![](i2cscan.png)
 
 Die 2 Blöcke **i2c-Scan** haben die gleiche Funktion und unterscheiden sich nur im Rückgabe Parameter.
 
@@ -81,8 +79,6 @@ Der Test findet ohne angeschlossene I²C Module die I²C Adressen 0x10, 0x18 und
 
 1. **i2c-Scan** gibt ein Array mit den I²C Adressen aller am I²C Bus gefundenen Module zurück.
 2. **i2c-Scan** wie 1. wandelt die Bytes aus dem Array in hexadezimal Zahlen um und gibt sie als Text zurück. Der Text kann unmittelbar in der LED-Matrix angezeigt werden.
-
-![](i2cscan.png)
 
 ### Erweiterungen
 
