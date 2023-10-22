@@ -21,7 +21,11 @@ Dieses Repository kann als **Erweiterung** in MakeCode hinzugefügt werden.
 
 ### Beschreibung der Erweiterung 'i2c'
 
-*
+I²C bedeutet *Inter-Integrated Circuit* [Wikipedia](https://de.wikipedia.org/wiki/I%C2%B2C). Am Calliope mini ist der linke Steckverbinder A0 ein I²C Anschluss.
+An die 4 Drähte Minus (GND), Plus (3,3 Volt), SDA und SCL können mehrere I²C Module gleichzeitig angeschlossen werden. Als Verteiler gibt es I²C Hubs mit 4 oder 6 Buchsen,
+die ohne Elektronik einfach parallel geschaltet sind. Qwiic Module haben meistens 2 Buchsen und können hintereinander gefädelt werden [Daisy Chain](https://de.wikipedia.org/wiki/Daisy_Chain).
+Das nennt man dann I²C Bus [Datenbus](https://de.wikipedia.org/wiki/Bus_(Datenverarbeitung)#Bussysteme).
+
 
 
 ### Erweiterungen
