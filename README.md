@@ -17,8 +17,6 @@ Dieses Repository kann als **Erweiterung** in MakeCode hinzugefügt werden.
 * wenn die Erweiterung gefunden wurde, klicke auf das Rechteck
 * jetzt hat die Liste den neuen Eintrag **i2c** bekommen
 
-![](blocks.png)
-
 ### Beschreibung der Erweiterung 'i2c'
 
 I²C bedeutet *Inter-Integrated Circuit* → [Wikipedia](https://de.wikipedia.org/wiki/I%C2%B2C). Am Calliope mini ist der linke Steckverbinder A0 ein I²C Anschluss.
@@ -41,6 +39,8 @@ Der empfangene Buffer wird in einer Variable *readBuffer* gespeichert und kann a
 > Ein Byte hat also IMMER 8 Bit und kann 2^8 = 2\*2\*2\*2\*2\*2\*2\*2 = 256 verschiedene Werte speichern. Größere Zahlen und andere Daten brauchen entsprechend mehrere Bytes.
 
 > Ein **Buffer** ist eine Sammlung von Bytes (je 8 Bit) in einer bestimmten Reihenfolge. Die Position eines Bytes im Buffer heißt **offset**. Das erste Byte steht am offset=0.
+
+![](blocks.png)
 
 #### Blöcke ####
 
