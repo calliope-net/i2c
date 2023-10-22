@@ -24,12 +24,19 @@ Dieses Repository kann als **Erweiterung** in MakeCode hinzugefügt werden.
 I²C bedeutet *Inter-Integrated Circuit* → [Wikipedia](https://de.wikipedia.org/wiki/I%C2%B2C). Am Calliope mini ist der linke Steckverbinder A0 ein I²C Anschluss.
 An die 4 Drähte Minus (GND), Plus (3,3 Volt), SDA und SCL können mehrere I²C Module gleichzeitig angeschlossen werden. Als Verteiler gibt es I²C Hubs mit 4 oder 6 Buchsen,
 die ohne Elektronik einfach miteinander verbunden sind. Qwiic Module haben meistens 2 Buchsen und können hintereinander gefädelt werden → [Daisy Chain](https://de.wikipedia.org/wiki/Daisy_Chain).
-Das nennt man dann I²C Bus → [Datenbus](https://de.wikipedia.org/wiki/Bus_(Datenverarbeitung)#Bussysteme).
+Viele Module an nur einem Anschluss nennt man → [Bus](https://de.wikipedia.org/wiki/Bus_(Datenverarbeitung)#Bussysteme) hier: I²C Bus.
 
 Zur Unterscheidung hat jedes I²C Modul am Bus eine andere I²C Adresse. Die Anzahl der I²C Adressen ist begrenzt auf 7 Bit, 00000000 bis 01111111, 0 bis 127 oder hexadezimal 0x00 bis 0x7F, 
-wovon aber einige wenige reserviert sind. Wenn am Modul die I²C Adresse geändert wird, können also mehrere gleiche Module am selben I²C Bus angeschlossen werden.
+wovon aber einige Adressen reserviert sind. Wenn am Modul die I²C Adresse geändert werden kann, können also mehrere gleiche Module am selben I²C Bus angeschlossen werden.
 
-Zur Programmierung des I²C Bus gibt es nur 2 Funktionen: Senden und Empfangen. 
+Zur Programmierung des I²C Bus gibt es nur 2 Funktionen: Senden und Empfangen.
+
+Zum Senden werden ein oder mehrere Bytes in einen Buffer gepackt und der Buffer über den I²C Bus an eine bestimmte I²C Adresse geschickt. Das Modul mit der richtigen I²C Adresse empfängt den Buffer,
+die Module mit den anderen I²C Adressen ignorieren die Datenübertragung. 
+
+
+
+Die Erweiterung 'i2c' stellt dafür den Block **writeBuffer** bereit. Den Block gibt es zweimal,  
 
 ### Erweiterungen
 
