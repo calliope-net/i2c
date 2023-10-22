@@ -40,9 +40,11 @@ Der empfangene Buffer wird in einer Variable *readBuffer* gespeichert und kann a
 
 > Ein **Buffer** ist eine Sammlung von Bytes (je 8 Bit) in einer bestimmten Reihenfolge. Die Position eines Bytes im Buffer heißt **offset**. Das erste Byte steht am offset=0.
 
+### Blöcke
+
 ![](blocks.png)
 
-#### Blöcke ####
+#### writeBuffer
 
 Zum **Senden** stellt die Erweiterung 'i2c' den Block **writeBuffer** bereit. Den Block gibt es 3 Mal mit der gleichen Funktion.
 
@@ -57,12 +59,16 @@ Zum **Senden** stellt die Erweiterung 'i2c' den Block **writeBuffer** bereit. De
    * In der Variable i2cError wird das Ergebnis vom Senden gespeichert. Der Wert 0 bedeutet kein Fehler.
    * Der Wert -1010 (dezimal) wird zurück gegeben, wenn an der I²C Adresse kein I²C Modul antwortet und den Buffer empfängt.
 
+#### readBuffer
+
 Zum **Empfangen** stellt die Erweiterung 'i2c' den Block **readBuffer** bereit.
 
 1. **readBuffer**
    * Bei *size* ist die Anzahl der vom I²C Modul als Antwort erwarteten Bytes einzutragen.
    * Der empfangene Buffer wird der Variable readBuffer zugewiesen.
    * Im Bereich *Buffer.get* gibt es mehrere Möglichkeiten, den Buffer auszuwerten. Dazu muss die Variable readBuffer in den Block eingefügt werden.
+
+#### i2c-Scan
 
 ![](i2cscan.png)
 
