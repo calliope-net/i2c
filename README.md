@@ -47,7 +47,7 @@ Der empfangene Buffer wird in einer Variable *readBuffer* gespeichert und kann a
 Zum **Senden** stellt die Erweiterung 'i2c' den Block **writeBuffer** bereit. Den Block gibt es 3 Mal mit der gleichen Funktion.
 
 1. **writeBuffer** mit Array als Parameter
-   * Hier können direkt Bytes eingetragen werden. Die Anzahl der Bytes kann mit - + eingestellt werden.
+   * Hier können direkt Bytes eingetragen werden. Die korrekte Anzahl der Bytes muss mit - + eingestellt werden.
    * Es dürfen nur 8-Bit Zahlen (0-255) eingetragen werden.
    * Für 16-Bit und 32-Bit Zahlen, die mehrere Bytes belegen, existiert der Block *.setNumber* im Bereich *Buffer.create*.
 2. **writeBuffer**, dem eine Variable vom Typ Buffer übergeben werden muss
@@ -66,8 +66,15 @@ Zum **Empfangen** stellt die Erweiterung 'i2c' den Block **readBuffer** bereit.
 
 Die Blöcke **i2c-Scan** haben die gleiche Funktion und unterscheiden sich nur im Rückgabe Parameter.
 
+Im Bereich *i2c Scan* sind Blöcke, die im angegebenen Bereich von - bis alle I²C Adressen testen, ob ein I²C Modul angeschlossen ist.
+Die Pause zwischen den Tests kann angegeben werden. Im Test wird ein Byte mit dem Wert 0 an jede I²C Adresse geschickt und das Ergebnis von writeBuffer ausgewertet.
+Ist das Ergebnis = 0, wird angenommen, dass an der I²C Adresse ein Modul vorhanden ist und den Buffer empfangen hat.
+Das funktioniert allerdings nicht bei jedem Modul, das LCD 16x2 Modul wird z.B. nicht erkannt.
+
+Der Test findet ohne angeschlossene I²C Module die I²C Adressen 0x10, 0x18 und 0x68. Diese sind vom Calliope intern belegt und können nicht von externen Modulen verwendet werden.
+
 1. **i2c-Scan** gibt ein Array mit den I²C Adressen aller am I²C Bus gefundenen Module zurück.
-2. **i2c-Scan** wie 1. wandelt die Bytes aus dem Array in hexadezimal Zahlen um und gibt sie als Text zurück.
+2. **i2c-Scan** wie 1. wandelt die Bytes aus dem Array in hexadezimal Zahlen um und gibt sie als Text zurück. Der Text kann unmittelbar in der LED-Matrix angezeigt werden.
 
 ![](i2cscan.png)
 
