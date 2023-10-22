@@ -64,7 +64,7 @@ Zum **Empfangen** stellt die Erweiterung 'i2c' den Block **readBuffer** bereit.
    * Der empfangene Buffer wird der Variable readBuffer zugewiesen.
    * Im Bereich *Buffer.get* gibt es mehrere Möglichkeiten, den Buffer auszuwerten. Dazu muss die Variable readBuffer in den Block eingefügt werden.
 
-Die Blöcke **i2c-Scan** haben die gleiche Funktion und unterscheiden sich nur im Rückgabe Parameter.
+Die 2 Blöcke **i2c-Scan** haben die gleiche Funktion und unterscheiden sich nur im Rückgabe Parameter.
 
 Im Bereich *i2c Scan* sind Blöcke, die im angegebenen Bereich von - bis alle I²C Adressen testen, ob ein I²C Modul angeschlossen ist.
 Die Pause zwischen den Tests kann angegeben werden. Im Test wird ein Byte mit dem Wert 0 an jede I²C Adresse geschickt und das Ergebnis von writeBuffer ausgewertet.
