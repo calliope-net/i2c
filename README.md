@@ -64,6 +64,13 @@ Zum **Empfangen** stellt die Erweiterung 'i2c' den Block **readBuffer** bereit.
    * Der empfangene Buffer wird der Variable readBuffer zugewiesen.
    * Im Bereich *Buffer.get* gibt es mehrere Möglichkeiten, den Buffer auszuwerten. Dazu muss die Variable readBuffer in den Block eingefügt werden.
 
+Die Blöcke **i2c-Scan** haben die gleiche Funktion und unterscheiden sich nur im Rückgabe Parameter.
+
+1. **i2c-Scan** gibt ein Array mit den I²C Adressen aller am I²C Bus gefundenen Module zurück.
+2. **i2c-Scan** wie 1. wandelt die Bytes aus dem Array in hexadezimal Zahlen um und gibt sie als Text zurück.
+
+![](i2cscan.png)
+
 ### Erweiterungen
 
 > [Upates für Erweiterungen; Erweiterungen aus einem Projekt löschen.](https://calliope-net.github.io/i2c-liste#updates)
