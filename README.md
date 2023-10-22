@@ -31,10 +31,11 @@ wovon aber einige Adressen reserviert sind. Wenn am Modul die I²C Adresse geän
 
 Zur Programmierung des I²C Bus gibt es nur 2 Funktionen: Senden und Empfangen.
 
-Zum Senden werden ein oder mehrere Bytes in einen Buffer gepackt und der Buffer über den I²C Bus an eine bestimmte I²C Adresse geschickt. Das Modul mit der richtigen I²C Adresse empfängt den Buffer,
+Zum **Senden** werden ein oder mehrere Bytes in einen Buffer gepackt und der Buffer über den I²C Bus an eine bestimmte I²C Adresse geschickt. Das Modul mit der richtigen I²C Adresse empfängt den Buffer,
 die Module mit den anderen I²C Adressen ignorieren die Datenübertragung. 
 
-
+Zum **Empfangen** wird nur die Anzahl des Bytes *size* an eine bestimmte I²C Adresse geschickt. Das Modul mit der richtigen I²C Adresse schickt dann einen Buffer zurück, der genau so viele Bytes lang ist.
+Der empfangene Buffer wird in einer Variable *readBuffer* gespeichert und kann ausgewertet werden.
 
 Die Erweiterung 'i2c' stellt dafür den Block **writeBuffer** bereit. Den Block gibt es zweimal,  
 
