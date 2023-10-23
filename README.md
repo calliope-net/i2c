@@ -43,7 +43,7 @@ Der empfangene Buffer wird in einer Variable *readBuffer* gespeichert und kann a
 > Teile von Buffern können aber in einen neuen Buffer kopiert werden.
 
 > Ein **Array** unterscheidet sich vom **Buffer**, weil Elemente vom Typ *number* größere Zahlen als 8 Bit speichern können. Einen Datentyp **Byte** gibt es beim Calliope (und in JavaScript) nicht.
-> Das Objekt **Buffer** wird gebraucht, weil beim **Senden** und **Empfangen** nur Bytes übertragen werden können. Für die Verpackung anderer Daten in Buffer stellt die Erweiterung **i2c** Blöcke bereit.
+> Das Objekt **Buffer** wird gebraucht, weil beim **Senden** und **Empfangen** nur Bytes übertragen werden können. Für die Verpackung anderer Daten in Buffer stellt die Erweiterung 'i2c' Blöcke bereit.
 
 ### Blöcke
 
