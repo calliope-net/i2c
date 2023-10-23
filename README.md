@@ -42,6 +42,8 @@ Der empfangene Buffer wird in einer Variable *readBuffer* gespeichert und kann a
 > Die Länge eines Buffers (einer Instanz) kann nachträglich nicht geändert werden. Die Anzahl Bytes, die in einen Buffer passen, wird immer bei *Buffer.create* festgelegt.
 > Teile von Buffern können aber in einen neuen Buffer kopiert werden.
 
+> Ein Array unterscheidet sich vom Buffer, weil Elemente vom Typ *number* größere Zahlen als 8 Bit speichern können. Einen Datentyp Byte gibt es beim Calliope (und in JavaScript) nicht.
+
 ### Blöcke
 
 ![](blocks.png)
