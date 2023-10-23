@@ -39,6 +39,8 @@ Der empfangene Buffer wird in einer Variable *readBuffer* gespeichert und kann a
 > Ein Byte hat also IMMER 8 Bit und kann 2^8 = 2\*2\*2\*2\*2\*2\*2\*2 = 256 verschiedene Werte speichern. Größere Zahlen und andere Daten brauchen entsprechend mehrere Bytes.
 
 > Ein **Buffer** ist eine Sammlung von Bytes (je 8 Bit) in einer bestimmten Reihenfolge. Die Position eines Bytes im Buffer heißt **offset**. Das erste Byte steht am offset=0.
+> Die Länge eines Buffers (einer Instanz) kann nachträglich nicht geändert werden. Die Anzahl Bytes, die in einen Buffer passen, wird immer bei *Buffer.create* festgelegt.
+> Teile von Buffern können aber in einen neuen Buffer kopiert werden.
 
 ### Blöcke
 
