@@ -44,6 +44,9 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
         // SparkFun Qwiic Joystick
         Joystick_x20 = 0x20,
 
+        // CalliBot
+        CalliBot_x20 = 0x20, CalliBot_x21 = 0x21, CalliBot2_x22 = 0x22,
+
         // SparkFun Qwiic GPIO
         GPIO_x27 = 0x27, GPIO_x26 = 0x26, GPIO_x25 = 0x25, GPIO_x24 = 0x24,
         GPIO_x23 = 0x23, GPIO_x22 = 0x22, GPIO_x21 = 0x21, GPIO_x20 = 0x20,
