@@ -12,7 +12,7 @@ optimiert und getestet für die gleichzeitige Nutzung mehrerer i2c Module am Cal
 [i2c-Adressen-Liste] https://wiki.seeedstudio.com/I2C_And_I2C_Address_of_Seeed_Product
 
 
-https://github.com/calliope-net/i2c/blob/master/BMX055%20i2c%20S145.PDF
+https://github.com/calliope-net/i2c/blob/master/BMX055_i2c_S145.PDF
 Seite 145:
     The default I²C address of the accelerometer device is 0011000b (0x18) and of the gyro device
     is 1101000b (0x68). It is used if the SDO1 (AM and G) pin is pulled to ´GND´. The alternative
