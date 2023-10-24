@@ -85,11 +85,13 @@ Die 2 Blöcke **i2c-Scan** haben die gleiche Funktion und unterscheiden sich nur
 Im Bereich *i2c Scan* sind Blöcke, die im angegebenen Bereich von - bis alle I²C Adressen testen, ob ein I²C Modul angeschlossen ist.
 Die Pause zwischen zwei Tests kann angegeben werden. Im Test wird ein Byte mit dem Wert 0 an jede I²C Adresse geschickt und das Ergebnis von writeBuffer ausgewertet.
 Ist das Ergebnis = 0, wird angenommen, dass an der I²C Adresse ein Modul vorhanden ist und den Buffer empfangen hat.
-Das funktioniert allerdings nicht bei jedem Modul, das LCD 16x2 Modul wird z.B. nicht erkannt.
+Das funktioniert allerdings nicht bei jedem Modul.
 
 Der i2c-Scan ist geeignet, Module zu finden, deren I²C Adresse durch Software geändert und vergessen wurde.
 
-Der Test findet ohne angeschlossene I²C Module drei I²C Adressen vom Bosch BMX055: 0x10 (magnetic device), 0x18 (accelerometer device) und 0x68 (gyro device). Diese sind beim Calliope intern belegt und können nicht von externen Modulen verwendet werden.
+> Der Test findet ohne angeschlossene I²C Module drei I²C Adressen vom Bosch BMX055:
+> 0x10 (magnetic device), 0x18 (accelerometer device) und 0x68 (gyro device).
+> Diese sind beim Calliope intern belegt und können nicht von externen Modulen verwendet werden.
 
 ### Erweiterungen
 
