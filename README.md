@@ -89,7 +89,7 @@ Das funktioniert allerdings nicht bei jedem Modul, das LCD 16x2 Modul wird z.B. 
 
 Der i2c-Scan ist geeignet, Module zu finden, deren I²C Adresse durch Software geändert und vergessen wurde.
 
-Der Test findet ohne angeschlossene I²C Module die I²C Adressen 0x10, 0x18 und 0x68. Diese sind vom Calliope intern belegt und können nicht von externen Modulen verwendet werden.
+Der Test findet ohne angeschlossene I²C Module drei I²C Adressen vom Bosch BMX055: 0x10 (magnetic device), 0x18 (accelerometer device) und 0x68 (gyro device). Diese sind beim Calliope intern belegt und können nicht von externen Modulen verwendet werden.
 
 ### Erweiterungen
 
