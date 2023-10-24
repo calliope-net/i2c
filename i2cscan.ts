@@ -16,7 +16,15 @@ namespace i2c
             b.setUint8(0, 0)
             let ex: number = 0
             for (let i = vonADDR; i <= bisADDR; i++) {
-                ex = pins.i2cWriteBuffer(i, b)
+
+                if (i == eADDR.LCD_16x2_x3E) { // reagiert nicht auf 1 Byte 0x00
+                    pins.i2cWriteBuffer(eADDR.magnetic_x10, b) // vorher eine gültige Adresse aufrufen
+                    ex = pins.i2cWriteBuffer(i, b)
+                    //ex = pins.i2cWriteBuffer(i, Buffer.fromArray([0x80, 0x01]))
+                }
+                else
+                    ex = pins.i2cWriteBuffer(i, b)
+
                 if (ex == 0) {
                     a.push(i)
                     if (a.length >= 32)
@@ -24,6 +32,7 @@ namespace i2c
                 }
                 basic.pause(ms)
             }
+            pins.i2cWriteBuffer(eADDR.magnetic_x10, b) // am Ende eine gültige Adresse aufrufen
         }
         return a
     }

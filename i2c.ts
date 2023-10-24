@@ -11,19 +11,34 @@ optimiert und getestet für die gleichzeitige Nutzung mehrerer i2c Module am Cal
 
 [i2c-Adressen-Liste] https://wiki.seeedstudio.com/I2C_And_I2C_Address_of_Seeed_Product
 
+
+https://github.com/calliope-net/i2c/blob/master/BMX055%20i2c%20S145.PDF
+Seite 145:
+    The default I²C address of the accelerometer device is 0011000b (0x18) and of the gyro device
+    is 1101000b (0x68). It is used if the SDO1 (AM and G) pin is pulled to ´GND´. The alternative
+    accel address 0011001b (0x19) and/or the alternative gyro address 1101001b (0x69) is
+    selected by pulling the SDO2 (AM and/or G) pin to ´VDDIO´.
+
+    The default I2C address of the magnetic device is 0010000b (0x10). The five MSB are
+    hardwired to "00100". Alternative addresses of the magnetic device can be selected fixing the
+    value of SDO or CSB lines. bit0 can be set to "1" by pulling the SDO1 pin to ´VDDIO´. bit1 can be
+    set to "1" by pulling the CSB3 line pin to ´VDDIO´.
+
+
 Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
 */ {
     export enum eADDR {
         // Grove - 6-Position DIP Switch; Grove - 5-Way Switch
         DIP_x03 = 0x03,
 
-        intern_x10 = 0x10,
+        magnetic_x10 = 0x10, // Bosch BMX055
 
         // Grove - 4-Channel SPDT Relay
         Rel_x11 = 0x11, Rel_x12 = 0x12,
 
+        accelerometer_x18 = 0x18, // Bosch BMX055
+
         // Qwiic Single Relay
-        intern_x18 = 0x18,
         Relay_x18 = 0x18, Relay_x19 = 0x19, Relay_x1E = 0x1E,
 
         // SparkFun Qwiic Joystick
@@ -65,7 +80,7 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
         Motor_x5D = 0x5D, Motor_x58 = 0x58, Motor_x59 = 0x59, Motor_x5A = 0x5A, Motor_x5B = 0x5B, Motor_x5C = 0x5C,
         Motor_x5E = 0x5E, Motor_x5F = 0x5F, Motor_x60 = 0x60, Motor_x61 = 0x61,
 
-        intern_x68 = 0x68,
+        gyro_x68 = 0x68, // Bosch BMX055
 
         // SparkFun 20x4 SerLCD - RGB Backlight (Qwiic)
         LCD_20x4_x72 = 0x72
