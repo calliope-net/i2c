@@ -93,6 +93,8 @@ Der i2c-Scan ist geeignet, Module zu finden, deren I²C Adresse durch Software g
 > 0x10 (magnetic device), 0x18 (accelerometer device) und 0x68 (gyro device).
 > Diese sind beim Calliope intern belegt und können nicht von externen Modulen verwendet werden.
 
+> Calli:Bot2 belegt nach diesem Test 8 I²C Adressen: 0x20 bis 0x27. Gebraucht werden höchstens drei: 0x20 bis 0x22.
+
 ### Erweiterungen
 
 > [Upates für Erweiterungen; Erweiterungen aus einem Projekt löschen.](https://calliope-net.github.io/i2c-liste#updates)
