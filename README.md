@@ -46,11 +46,11 @@ Der empfangene Buffer wird in einer Variable *readBuffer* gespeichert und kann a
 > Die Position eines Elementes im Array heißt **index**. Das erste Element steht am index=0. Die Länge eines Arrays kann nachträglich geändert werden, z.B. durch hinten anhängen.
 > Die Elemente im Array können vom Typ *number*, *string*, *boolean* oder *object* sein. Es gibt auch ein Array aus Buffer-Objekten. 
 
-> Einen Datentyp **Byte** gibt es beim Calliope (und in JavaScript) nicht.
-> Das Objekt **Buffer** wird gebraucht, weil beim **Senden** und **Empfangen** nur Bytes übertragen werden können.
-
 > Der Datentyp **Number** ist eine Wundertüte. Number kann 8-Bit, 16-Bit, 32-Bit, 64-Bit Zahlen mit und ohne Vorzeichen und mit und ohne Komma speichern.
 > Im Buffer kann eine Number also 1 Byte, 2 Byte, 4 Byte oder 8 Byte belegen. 
+
+> Einen Datentyp **Byte** gibt es beim Calliope (und in JavaScript) nicht.
+> Das Objekt **Buffer** wird gebraucht, weil beim **Senden** und **Empfangen** nur Bytes übertragen werden können.
 
 Für die Verpackung anderer Daten in Buffer stellt die Erweiterung 'i2c' Blöcke bereit.
 
