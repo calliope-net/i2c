@@ -42,8 +42,14 @@ Der empfangene Buffer wird in einer Variable *readBuffer* gespeichert und kann a
 > Die Länge eines Buffers (einer Instanz) kann nachträglich nicht geändert werden. Die Anzahl Bytes, die in einen Buffer passen, wird immer bei *Buffer.create* festgelegt.
 > Teile von Buffern können aber in einen neuen Buffer kopiert werden.
 
-> Ein **Array** unterscheidet sich vom **Buffer**, weil Elemente vom Typ *number* größere Zahlen als 8 Bit speichern können. Einen Datentyp **Byte** gibt es beim Calliope (und in JavaScript) nicht.
-> Das Objekt **Buffer** wird gebraucht, weil beim **Senden** und **Empfangen** nur Bytes übertragen werden können. Für die Verpackung anderer Daten in Buffer stellt die Erweiterung 'i2c' Blöcke bereit.
+> Ein **Array** unterscheidet sich vom **Buffer**, weil Elemente vom Typ *number* größere Zahlen als 8 Bit speichern können.
+> Die Position eines Elementes im Array heißt **index**. Das erste Element steht am index=0. Die Länge eines Arrays kann nachträglich geändert werden, z.B. durch hinten anhängen.
+> Die Elemente im Array können vom Typ *number*, *string*, *boolean* oder *object* sein. Es gibt auch ein Array aus Buffer-Objekten. 
+
+> Einen Datentyp **Byte** gibt es beim Calliope (und in JavaScript) nicht.
+> Das Objekt **Buffer** wird gebraucht, weil beim **Senden** und **Empfangen** nur Bytes übertragen werden können.
+
+Für die Verpackung anderer Daten in Buffer stellt die Erweiterung 'i2c' Blöcke bereit.
 
 ### Blöcke
 
