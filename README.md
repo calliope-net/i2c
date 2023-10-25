@@ -49,6 +49,9 @@ Der empfangene Buffer wird in einer Variable *readBuffer* gespeichert und kann a
 > Einen Datentyp **Byte** gibt es beim Calliope (und in JavaScript) nicht.
 > Das Objekt **Buffer** wird gebraucht, weil beim **Senden** und **Empfangen** nur Bytes übertragen werden können.
 
+> Der Datentyp **Number** ist eine Wundertüte. Number kann 8-Bit, 16-Bit, 32-Bit, 64-Bit Zahlen mit und ohne Vorzeichen und mit und ohne Komma speichern.
+> Im Buffer kann eine Number also 1 Byte, 2 Byte, 4 Byte oder 8 Byte belegen. 
+
 Für die Verpackung anderer Daten in Buffer stellt die Erweiterung 'i2c' Blöcke bereit.
 
 ### Blöcke
