@@ -18,7 +18,7 @@ namespace i2c {
     //% group="Buffer anlegen" subcategory="Buffer.create"
     //% block="Buffer.create size %size" weight=8
     //% blockSetVariable=oBuffer
-    export function ocreate(size: number): i2cclass { return new i2cclass(Buffer.create(size)) }
+    export function create(size: number): i2cclass { return new i2cclass(Buffer.create(size)) }
 
     // ========== oBuffer.setUint8 weight=6
     // ========== oBuffer.setNumber weight=4
@@ -41,17 +41,17 @@ namespace i2c {
     //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
     //% block="Buffer.fromString(%str)" weight=6
     //% blockSetVariable=oBuffer
-    export function ofromUTF8(str: string) { return new i2cclass(Buffer.fromUTF8(str)) }
+    export function fromUTF8(str: string) { return new i2cclass(Buffer.fromUTF8(str)) }
 
     //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
     //% block="Buffer.fromHex(%hex)" weight=4
     //% blockSetVariable=oBuffer
-    export function ofromHex(hex: string) { return new i2cclass(Buffer.fromHex(hex)) }
+    export function fromHex(hex: string) { return new i2cclass(Buffer.fromHex(hex)) }
 
     // ========== oBuffer.concat  weight=3
 
     //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
-    //% block="Buffer %pBuffer" weight=2
+    //% block="new Buffer (%pBuffer)" weight=2
     //% blockSetVariable=oBuffer
     export function fromBuffer(pBuffer: Buffer) { return new i2cclass(pBuffer) }
 
@@ -206,7 +206,7 @@ namespace i2c {
     //% block="i2c %pADDR readBuffer size %size || repeat %repeat"
     //% pADDR.shadow="i2c_eADDR"
     //% blockSetVariable=oBuffer
-    export function oi2cReadBuffer(pADDR: number, size: number, repeat: boolean = false) { return new i2cclass(pins.i2cReadBuffer(pADDR, size, repeat)) }
+    export function i2cReadBuffer(pADDR: number, size: number, repeat: boolean = false) { return new i2cclass(pins.i2cReadBuffer(pADDR, size, repeat)) }
 
 
 

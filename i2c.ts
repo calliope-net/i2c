@@ -2,7 +2,7 @@
 //% color=#007FFF icon="\uf1e6" block="i2c" weight=24
 /* groups='["Control", "Show", "Draw", "Delete"]' (Beispiel aus pxt-oledpaint) */
 namespace i2c
-/* 230829 231021 https://github.com/calliope-net/i2c
+/* 230829 231021 231104 https://github.com/calliope-net/i2c
 Calliope Blöcke zur Programmierung beliebiger i2c Module ohne JavaScript.
 Typ 'Buffer' mit Blöcken verwenden.
 optimiert und getestet für die gleichzeitige Nutzung mehrerer i2c Module am Calliope
@@ -26,6 +26,7 @@ Seite 145:
 
 
 Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
+umgestellt auf Objektvariablen im November 2023
 */ {
     export enum eADDR {
         // Grove - 6-Position DIP Switch; Grove - 5-Way Switch
@@ -152,7 +153,7 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
 
     //% blockId=i2c_eADDR
     //% group="i2c" subcategory="i2c Scan"
-    //% block="%pADDR" weight=6
+    //% block="%pADDR"
     //% blockSetVariable=i2cAdresse
     export function i2c_eADDR(pADDR: eADDR): number { return pADDR }
 
