@@ -38,16 +38,38 @@ namespace i2c {
 
 
 
+        //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
+        //% block="Buffer %oBuffer .concat(otherBuffer %other)" weight=3
+        //% blockSetVariable=oBuffer
+        concat(other: i2cclass) { return this.qBuffer.concat(other.qBuffer) }
+
+
 
 
     } // ========== class i2cclass
 
     // namespace i2c
-    /* class i2cclass implements Buffer {
-        size: number
-        constructor(size: number) {
 
-        }
-    } */
+
+    // ========== group="Buffer anlegen aus Daten" subcategory="Buffer.create"
+
+
+    //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
+    //% block="%bytes" weight=16
+    //% blockSetVariable=oBuffer
+    export function ofromArray(bytes: number[]) { return new i2cclass(Buffer.fromArray(bytes)) }
+
+
+    //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
+    //% block="Buffer.fromString(%str)" weight=5
+    //% blockSetVariable=oBuffer
+    export function ofromUTF8(str: string) { return new i2cclass(Buffer.fromUTF8(str)) }
+
+    //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
+    //% block="Buffer.fromHex(%hex)" weight=4
+    //% blockSetVariable=oBuffer
+    export function ofromHex(hex: string) { return new i2cclass(Buffer.fromHex(hex)) }
+
+
 
 } // i2cclass.ts

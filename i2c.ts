@@ -141,7 +141,6 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
     //% deprecated=true
     //% group="Buffer anlegen" subcategory="Buffer.create"
     //% block="Buffer.create size %size" weight=8
-    //% blockSetVariable=buffer
     export function create(size: number): Buffer { return Buffer.create(size) }
 
     //% deprecated=true
@@ -176,16 +175,19 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
     //% blockSetVariable=buffer
     export function i2c_fromArray(bytes: number[]): Buffer { return Buffer.fromArray(bytes) }
 
+    //% deprecated=true
     //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
     //% block="Buffer.fromString(%str)" weight=5
     //% blockSetVariable=buffer
     export function fromUTF8(str: string): Buffer { return Buffer.fromUTF8(str) }
 
+    //% deprecated=true
     //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
     //% block="Buffer.fromHex(%hex)" weight=4
     //% blockSetVariable=buffer
     export function fromHex(hex: string): Buffer { return Buffer.fromHex(hex) }
 
+    //% deprecated=true
     //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
     //% block="Buffer %buffer .concat(otherBuffer %other)" weight=3
     //% blockSetVariable=buffer
