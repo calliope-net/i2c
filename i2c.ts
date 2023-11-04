@@ -138,16 +138,19 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
     // ========== group="Buffer anlegen"
 
 
+    //% deprecated=true
     //% group="Buffer anlegen" subcategory="Buffer.create"
     //% block="Buffer.create size %size" weight=8
     //% blockSetVariable=buffer
     export function create(size: number): Buffer { return Buffer.create(size) }
 
+    //% deprecated=true
     //% group="Buffer anlegen" subcategory="Buffer.create"
     //% block="Buffer %buffer .setUint8(offset %off byte %byte)" weight=6
     //% byte.min=0 byte.max=255
     export function setUint8(buffer: Buffer, off: number, byte: number) { buffer.setUint8(off, byte) }
 
+    //% deprecated=true
     //% group="Buffer anlegen" subcategory="Buffer.create"
     //% block="Buffer %buffer .setNumber(%format offset %off value %value)" weight=4
     //% inlineInputMode=inline
@@ -159,6 +162,7 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
     //% format.defl=NumberFormat.UInt8LE
     export function sizeOfNumberFormat(format: NumberFormat): 0 | 4 | 2 | 1 | 8 { return Buffer.sizeOfNumberFormat(format) }
 
+    //% deprecated=true
     //% group="Buffer anlegen" subcategory="Buffer.create"
     //% block="Buffer %buffer .length" weight=1
     export function length(buffer: Buffer): number { return buffer.length }
