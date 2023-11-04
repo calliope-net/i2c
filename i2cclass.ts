@@ -1,6 +1,7 @@
 
 namespace i2c {
 
+    // ========== group="calliope-net.github.io/i2c"
 
     //% group="calliope-net.github.io/i2c"
     //% block="%bytes" weight=16
@@ -16,17 +17,16 @@ namespace i2c {
     //% group="Buffer anlegen" subcategory="Buffer.create"
     //% block="Buffer.create size %size" weight=8
     //% blockSetVariable=oBuffer
-    export function createClass(size: number): i2cclass { return new i2cclass(Buffer.create(size)) }
+    export function ocreate(size: number): i2cclass { return new i2cclass(Buffer.create(size)) }
 
-    // ========== setUint8 weight=6
-    // ========== setNumber weight=4
-    // ========== length weight=2
+    // ========== oBuffer.setUint8 weight=6
+    // ========== oBuffer.setNumber weight=4
+    // ========== oBuffer.length weight=2
 
     //% group="Buffer anlegen" subcategory="Buffer.create"
     //% block="sizeOfNumberFormat %format" weight=1
     //% format.defl=NumberFormat.UInt8LE
-    export function osizeOfNumberFormat(format: NumberFormat): 0 | 4 | 2 | 1 | 8 { return Buffer.sizeOfNumberFormat(format) }
-
+    export function sizeOfNumberFormat(format: NumberFormat): 0 | 4 | 2 | 1 | 8 { return Buffer.sizeOfNumberFormat(format) }
 
 
 
@@ -107,7 +107,45 @@ namespace i2c {
         //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
         //% block="Buffer %oBuffer .concat(otherBuffer %other)" weight=3
         //% blockSetVariable=oBuffer
-        concat(other: i2cclass) { return this.qBuffer.concat(other.qBuffer) }
+        concat(other: Buffer) { return new i2cclass(this.qBuffer.concat(other)) }
+
+
+
+        // ========== subcategory="Buffer.get"
+
+        // ========== group="Byte" subcategory="Buffer.get"
+
+        //% group="Byte" subcategory="Buffer.get"
+        //% block="Buffer %oBuffer .getUint8(offset %off)"
+        getUint8(off: number): number { return this.qBuffer.getUint8(off) }
+
+        // ========== group="Number" subcategory="Buffer.get"
+
+        //% group="Number" subcategory="Buffer.get"
+        //% block="Buffer %oBuffer .getNumber(%format offset %off)"
+        //% format.defl=NumberFormat.UInt8LE
+        getNumber(format: NumberFormat, off: number): number { return this.qBuffer.getNumber(format, off) }
+
+
+        // ========== group="Array" subcategory="Buffer.get"
+
+        //% group="Array" subcategory="Buffer.get"
+        //% block="Buffer %oBuffer .toArray(%format)"
+        //% format.defl=NumberFormat.UInt8LE
+        toArray(format: NumberFormat): number[] { return this.qBuffer.toArray(format) }
+
+
+        // ========== group="String" subcategory="Buffer.get"
+
+        //% group="String" subcategory="Buffer.get"
+        //% block="Buffer %oBuffer .toString()" weight=4
+        toString(): string { return this.qBuffer.toString() }
+
+        //% group="String" subcategory="Buffer.get"
+        //% block="Buffer %oBuffer .toHex()" weight=2
+        toHex(): string { return this.qBuffer.toHex() }
+
+
 
 
 

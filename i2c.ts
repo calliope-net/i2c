@@ -152,10 +152,10 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
     export function setNumber(buffer: Buffer, format: NumberFormat, off: number, value: number) { buffer.setNumber(format, off, value) }
 
     //% deprecated=true
-    //% group="Buffer anlegen" subcategory="Buffer.create"
-    //% block="sizeOfNumberFormat %format" weight=2
-    //% format.defl=NumberFormat.UInt8LE
-    export function sizeOfNumberFormat(format: NumberFormat): 0 | 4 | 2 | 1 | 8 { return Buffer.sizeOfNumberFormat(format) }
+    // group="Buffer anlegen" subcategory="Buffer.create"
+    // block="sizeOfNumberFormat %format" weight=2
+    // format.defl=NumberFormat.UInt8LE
+    //export function sizeOfNumberFormat(format: NumberFormat): 0 | 4 | 2 | 1 | 8 { return Buffer.sizeOfNumberFormat(format) }
 
     //% deprecated=true
     //% group="Buffer anlegen" subcategory="Buffer.create"
@@ -194,6 +194,7 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
 
     // ========== group="Byte" subcategory="Buffer.get"
 
+    //% deprecated=true
     //% group="Byte" subcategory="Buffer.get"
     //% block="Buffer %buffer .getUint8(offset %off)"
     export function getUint8(buffer: Buffer, off: number): number { return buffer.getUint8(off) }
@@ -201,6 +202,7 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
 
     // ========== group="Number" subcategory="Buffer.get"
 
+    //% deprecated=true
     //% group="Number" subcategory="Buffer.get"
     //% block="Buffer %buffer .getNumber(%format offset %off)"
     //% format.defl=NumberFormat.UInt8LE
@@ -209,6 +211,7 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
 
     // ========== group="Array" subcategory="Buffer.get"
 
+    //% deprecated=true
     //% group="Array" subcategory="Buffer.get"
     //% block="Buffer %buffer .toArray(%format) max 32 Byte"
     //% format.defl=NumberFormat.UInt8LE
@@ -217,10 +220,12 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
 
     // ========== group="String" subcategory="Buffer.get"
 
+    //% deprecated=true
     //% group="String" subcategory="Buffer.get"
     //% block="Buffer %buffer .toString()" weight=4
     export function toString(buffer: Buffer): string { return buffer.toString() }
 
+    //% deprecated=true
     //% group="String" subcategory="Buffer.get"
     //% block="Buffer %buffer .toHex()" weight=2
     export function toHex(buffer: Buffer): string { return buffer.toHex() }
