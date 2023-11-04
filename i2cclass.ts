@@ -3,8 +3,9 @@ namespace i2c {
 
     // ========== group="calliope-net.github.io/i2c"
 
+ 
     //% group="calliope-net.github.io/i2c"
-    //% block="%bytes" weight=16
+    //% block="%bytes"
     //% blockSetVariable=oBuffer
     export function fromArray1(bytes: number[]) { return new i2cclass(Buffer.fromArray(bytes)) }
 
@@ -93,7 +94,6 @@ namespace i2c {
 
         //% group="Buffer anlegen" subcategory="Buffer.create"
         //% block="Buffer %oBuffer .setNumber(%format offset %off value %value)" weight=4
-        //% inlineInputMode=inline
         //% format.defl=NumberFormat.UInt8LE
         setNumber(format: NumberFormat, off: number, value: number) { this.qBuffer.setNumber(format, off, value) }
 
@@ -106,6 +106,7 @@ namespace i2c {
 
         //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
         //% block="Buffer %oBuffer .concat(otherBuffer %other)" weight=3
+        //% other.shadow="i2c_toBuffer"
         //% blockSetVariable=oBuffer
         concat(other: Buffer) { return new i2cclass(this.qBuffer.concat(other)) }
 
@@ -146,6 +147,15 @@ namespace i2c {
         toHex(): string { return this.qBuffer.toHex() }
 
 
+        // ========== group="Buffer aus Objektvariable" subcategory="Buffer.get"
+
+        //% blockId=i2c_toBuffer
+        //% group="Buffer aus Objektvariable" subcategory="Buffer.get"
+        //% block="%oBuffer"
+        //% blockSetVariable=buffer
+        i2c_toBuffer(): Buffer { return this.qBuffer }
+
+
 
         // ========== advanced=true ==========
 
@@ -172,6 +182,7 @@ namespace i2c {
 
         //% group="Write contents of src at dstOffset in current buffer." advanced=true
         //% block="Buffer %oBuffer .write(dstOffset %dstOffset srcBuffer %src)"
+        //% src.shadow="i2c_toBuffer"
         write(dstOffset: number, src: Buffer) { this.qBuffer.write(dstOffset, src) }
 
 
@@ -197,6 +208,9 @@ namespace i2c {
     //% blockSetVariable=oBuffer
     export function oi2cReadBuffer(pADDR: number, size: number, repeat: boolean = false) { return new i2cclass(pins.i2cReadBuffer(pADDR, size, repeat)) }
 
+
+
+    // ========== group="Splits buffer into parts no larger than specified." advanced=true
 
     //% group="Splits buffer into parts no larger than specified." advanced=true
     //% block="Buffer.chunkedFromUTF8(String %str maxBytes %maxBytes)" weight=2
