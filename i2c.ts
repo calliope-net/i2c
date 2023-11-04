@@ -90,17 +90,9 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
     }
 
 
-    // ========== group="calliope-net.github.io/i2c"
-
-    //% blockId=i2c_eADDR
-    //% group="calliope-net.github.io/i2c"
-    //% block="%pADDR" weight=6
-    //% blockSetVariable=i2cAdresse
-    export function i2c_eADDR(pADDR: eADDR): number { return pADDR }
-
-
     // ========== group="i2c Buffer senden an Modul"
 
+    //% deprecated=true
     //% group="Buffer senden an i2c-Modul"
     //% block="i2c %pADDR writeBuffer %buf || repeat %repeat" weight=8
     //% pADDR.shadow="i2c_eADDR"
@@ -108,12 +100,14 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
     //% repeat.shadow="toggleOnOff"
     export function i2cWriteArray(pADDR: number, buf: Buffer, repeat: boolean = false) { pins.i2cWriteBuffer(pADDR, buf, repeat) }
 
+    //% deprecated=true
     //% group="Buffer senden an i2c-Modul"
     //% block="i2c %pADDR writeBuffer %buf || repeat %repeat" weight=6
     //% pADDR.shadow="i2c_eADDR"
     //% repeat.shadow="toggleOnOff"
     export function i2cWriteBuffer(pADDR: number, buf: Buffer, repeat: boolean = false) { pins.i2cWriteBuffer(pADDR, buf, repeat) }
 
+    //% deprecated=true
     //% group="Buffer senden an i2c-Modul mit Fehlercode (0 ist kein Fehler)"
     //% block="i2c %pADDR writeBuffer %buf || repeat %repeat" weight=4
     //% pADDR.shadow="i2c_eADDR"
@@ -124,6 +118,7 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
 
     // ========== group="Buffer empfangen von i2c-Modul"
 
+    //% deprecated=true
     //% group="Buffer empfangen von i2c-Modul"
     //% block="i2c %pADDR readBuffer size %size || repeat %repeat"
     //% pADDR.shadow="i2c_eADDR"
@@ -156,6 +151,7 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
     //% format.defl=NumberFormat.UInt8LE
     export function setNumber(buffer: Buffer, format: NumberFormat, off: number, value: number) { buffer.setNumber(format, off, value) }
 
+    //% deprecated=true
     //% group="Buffer anlegen" subcategory="Buffer.create"
     //% block="sizeOfNumberFormat %format" weight=2
     //% format.defl=NumberFormat.UInt8LE
@@ -169,10 +165,9 @@ Code neu programmiert von Lutz Elßner im Juli, August, Oktober 2023
 
     // ========== group="Buffer anlegen aus Daten" subcategory="Buffer.create"
 
-    //% blockId=i2c_fromArray
+    //% blockId=i2c_fromArray blockHidden=true
     //% group="Buffer anlegen aus Daten" subcategory="Buffer.create"
     //% block="%bytes" weight=6
-    //% blockSetVariable=buffer
     export function i2c_fromArray(bytes: number[]): Buffer { return Buffer.fromArray(bytes) }
 
     //% deprecated=true

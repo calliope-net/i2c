@@ -59,4 +59,14 @@ namespace i2c
         return text.charCodeAt(index)
     }
 
+
+    // ========== group="i2c" subcategory="i2c Scan"
+
+    //% blockId=i2c_eADDR
+    //% group="i2c" subcategory="i2c Scan"
+    //% block="%pADDR" weight=6
+    //% blockSetVariable=i2cAdresse
+    export function i2c_eADDR(pADDR: eADDR): number { return pADDR }
+
+
 } // i2cscan.ts
