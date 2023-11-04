@@ -111,7 +111,7 @@ namespace i2c {
 
 
 
-        // ========== subcategory="Buffer.get"
+        // ========== subcategory="Buffer.get" ==========
 
         // ========== group="Byte" subcategory="Buffer.get"
 
@@ -147,6 +147,39 @@ namespace i2c {
 
 
 
+        // ========== advanced=true ==========
+
+        // ========== group="Fill (a fragment) of the buffer with given value."
+
+        //% group="Fill (a fragment) of the buffer with given value." advanced=true
+        //% block="Buffer %oBuffer .fill(Byte %byte)" weight=3
+        fill(byte: number) { this.qBuffer.fill(byte) }
+
+        //% group="Fill (a fragment) of the buffer with given value." advanced=true
+        //% block="Buffer %oBuffer .fill(Byte %byte offset %off length %length)" weight=2
+        //% byte.min=0 byte.max=255
+        fill_fragment(byte: number, off: number, length: number) { this.qBuffer.fill(byte, off, length) }
+
+
+        // ========== group="Return a copy of a fragment of a buffer."
+
+        //% group="Return a copy of a fragment of a buffer." advanced=true
+        //% block="Buffer %oBuffer .slice(offset %off length %length)"
+        slice(off: number, length: number): Buffer { return this.qBuffer.slice(off, length) }
+
+
+        // ========== group="Write contents of src at dstOffset in current buffer."
+
+        //% group="Write contents of src at dstOffset in current buffer." advanced=true
+        //% block="Buffer %oBuffer .write(dstOffset %dstOffset srcBuffer %src)"
+        write(dstOffset: number, src: Buffer) { this.qBuffer.write(dstOffset, src) }
+
+
+        // ========== group="Splits buffer into parts no larger than specified."
+
+        //% group="Splits buffer into parts no larger than specified." advanced=true
+        //% block="Buffer %oBuffer .chunked(maxSize %maxSize)" weight=3
+        chunked(maxSize: number): Buffer[] { return this.qBuffer.chunked(maxSize) }
 
 
 
@@ -164,6 +197,10 @@ namespace i2c {
     //% blockSetVariable=oBuffer
     export function oi2cReadBuffer(pADDR: number, size: number, repeat: boolean = false) { return new i2cclass(pins.i2cReadBuffer(pADDR, size, repeat)) }
 
+
+    //% group="Splits buffer into parts no larger than specified." advanced=true
+    //% block="Buffer.chunkedFromUTF8(String %str maxBytes %maxBytes)" weight=2
+    export function ochunkedFromUTF8(str: string, maxBytes: number): Buffer[] { return Buffer.chunkedFromUTF8(str, maxBytes) }
 
 
 } // i2cclass.ts
