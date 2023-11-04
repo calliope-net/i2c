@@ -200,7 +200,7 @@ namespace i2c {
 
     //% group="Splits buffer into parts no larger than specified." advanced=true
     //% block="Buffer.chunkedFromUTF8(String %str maxBytes %maxBytes)" weight=2
-    export function ochunkedFromUTF8(str: string, maxBytes: number): Buffer[] { return Buffer.chunkedFromUTF8(str, maxBytes) }
+    export function chunkedFromUTF8(str: string, maxBytes: number): Buffer[] { return Buffer.chunkedFromUTF8(str, maxBytes) }
 
 
 } // i2cclass.ts

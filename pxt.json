@@ -10,7 +10,6 @@
         "README.md",
         "i2c.ts",
         "i2cscan.ts",
-        "i2cbuffer.ts",
         "i2cclass.ts"
     ],
     "testFiles": [
