@@ -83,6 +83,9 @@ umgestellt auf Objektvariablen im November 2023
         //  M5Stack U024-C Joystick
         Joystick_x52 = 0x52,
 
+        // M5Stack U305-B CardKB
+        CardKB_x5F = 0x5F,
+
         // SparkFun Qwiic Motor Driver
         Motor_x5D = 0x5D, Motor_x58 = 0x58, Motor_x59 = 0x59, Motor_x5A = 0x5A, Motor_x5B = 0x5B, Motor_x5C = 0x5C,
         Motor_x5E = 0x5E, Motor_x5F = 0x5F, Motor_x60 = 0x60, Motor_x61 = 0x61,
