@@ -203,11 +203,14 @@ namespace i2c {
     // ========== group="Buffer empfangen von i2c-Modul"
 
     //% group="Buffer empfangen von i2c-Modul"
-    //% block="i2c %pADDR readBuffer size %size || repeat %repeat"
+    //% block="i2c %pADDR readBuffer size %size || repeat %repeat" weight=6
     //% pADDR.shadow="i2c_eADDR"
     //% blockSetVariable=oBuffer
     export function i2cReadBuffer(pADDR: number, size: number, repeat: boolean = false) { return new i2cclass(pins.i2cReadBuffer(pADDR, size, repeat)) }
 
+    //% group="Kommentar"
+    //% block="// %text" weight=4
+    export function comment(text: string): void { }
 
 
     // ========== group="Splits buffer into parts no larger than specified." advanced=true
